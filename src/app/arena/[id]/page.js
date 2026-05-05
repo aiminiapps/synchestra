@@ -123,108 +123,96 @@ const HubNode = ({ data }) => {
   const { analysis, market } = data;
   return (
     <>
-      <div className="w-[440px] rounded-2xl relative overflow-hidden border border-[#00E5A0]/20 bg-[#0b0c10]">
-        {/* Crosshatch left strip */}
-        <div
-          className="absolute left-0 top-0 w-5 h-full border-r border-[#00E5A0]/15 pointer-events-none"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(315deg, rgba(124,117,255,0.12) 0, rgba(124,117,255,0.12) 1px, transparent 0, transparent 50%)",
-            backgroundSize: "8px 8px",
-          }}
-        />
-        <div className="pl-8 pr-6 py-6">
-
-          {/* Token + Price Row */}
-          <div className="flex items-end justify-between mb-3">
-            <div className="flex items-center just gap-3">
-              {market?.image && (
-                <img src={market.image} alt="" className="w-9 h-9 rounded-full mx-auto my-auto" />
-              )}
-              <div>
-                <h2 className="text-3xl font-extrabold text-white tracking-tight">
-                  {analysis.token}
-                </h2>
-                {market?.symbol && (
-                  <span className="text-[10px] font-mono text-white/25">
-                    {market.symbol}
-                    {market.rank ? ` · #${market.rank}` : ""}
-                  </span>
-                )}
-              </div>
-            </div>
-            {market?.price != null && (
-              <div className="text-right">
-                <p className="text-xl font-bold font-mono text-white">
-                  ${market.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}
-                </p>
-                {market.change24h != null && (
-                  <p
-                    className={`text-[11px] font-mono flex items-center gap-0.5 justify-end ${market.change24h >= 0 ? "text-[#2dd4a0]" : "text-[#ff6b5b]"}`}
-                  >
-                    {market.change24h >= 0 ? (
-                      <RiArrowUpLine />
-                    ) : (
-                      <RiArrowDownLine />
-                    )}
-                    {Math.abs(market.change24h).toFixed(2)}% 24h
-                  </p>
-                )}
-              </div>
+      <div className="w-[460px] rounded-[24px] relative overflow-hidden border border-white/[0.04] bg-[#060B18]/60 backdrop-blur-xl shadow-2xl p-8">
+        {/* Token + Price Row */}
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex items-center gap-4">
+            {market?.image && (
+              <img src={market.image} alt="" className="w-12 h-12 rounded-full border border-white/10" />
             )}
+            <div>
+              <h2 className="text-3xl font-medium text-white/90 tracking-tight">
+                {analysis.token}
+              </h2>
+              {market?.symbol && (
+                <span className="text-[11px] font-mono text-white/40 uppercase tracking-widest block mt-1">
+                  {market.symbol}
+                  {market.rank ? ` · Rank ${market.rank}` : ""}
+                </span>
+              )}
+            </div>
           </div>
-
-          {/* Question */}
-          <div className="text-white/50 text-[13px] leading-relaxed bg-white/[0.02] p-3.5 rounded-xl border border-white/[0.04] mb-4 nodrag nowheel">
-            {analysis.question}
-          </div>
-
-          {/* Market mini-stats */}
-          {market && (
-            <div className="grid grid-cols-3 gap-2 mb-3">
-              <div className="rounded-lg bg-white/[0.02] border border-white/[0.04] p-2.5">
-                <span className="text-[8px] text-white/20 uppercase tracking-widest block mb-0.5">
-                  Market Cap
-                </span>
-                <span className="text-[12px] font-mono font-bold text-white/80">
-                  {fmt(market.marketCap)}
-                </span>
-              </div>
-              <div className="rounded-lg bg-white/[0.02] border border-white/[0.04] p-2.5">
-                <span className="text-[8px] text-white/20 uppercase tracking-widest block mb-0.5">
-                  24h Vol
-                </span>
-                <span className="text-[12px] font-mono font-bold text-white/80">
-                  {fmt(market.volume)}
-                </span>
-              </div>
-              <div className="rounded-lg bg-white/[0.02] border border-white/[0.04] p-2.5">
-                <span className="text-[8px] text-white/20 uppercase tracking-widest block mb-0.5">
-                  7d
-                </span>
-                <span
-                  className={`text-[12px] font-mono font-bold ${market.change7d != null ? (market.change7d >= 0 ? "text-[#2dd4a0]" : "text-[#ff6b5b]") : "text-white/40"}`}
+          {market?.price != null && (
+            <div className="text-right">
+              <p className="text-xl font-medium font-mono text-white/90">
+                ${market.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}
+              </p>
+              {market.change24h != null && (
+                <p
+                  className={`text-[11px] font-mono flex items-center gap-1 justify-end mt-1 ${market.change24h >= 0 ? "text-[#00E5A0]" : "text-red-400"}`}
                 >
-                  {market.change7d != null
-                    ? `${market.change7d >= 0 ? "+" : ""}${market.change7d.toFixed(2)}%`
-                    : "—"}
-                </span>
-              </div>
+                  {market.change24h >= 0 ? (
+                    <RiArrowUpLine />
+                  ) : (
+                    <RiArrowDownLine />
+                  )}
+                  {Math.abs(market.change24h).toFixed(2)}% 24h
+                </p>
+              )}
             </div>
           )}
+        </div>
 
-          {/* Meta tags */}
-          <div className="flex flex-wrap gap-1.5">
-            <span className="text-[9px] font-mono text-[#4a9eff]/70 px-2.5 py-1 rounded-md bg-[#4a9eff]/8 border border-[#4a9eff]/15">
-              {analysis.category}
-            </span>
-            <span className="text-[9px] font-mono text-white/25 px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.04]">
-              {analysis.language}
-            </span>
-            <span className="text-[9px] font-mono text-white/25 px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/[0.04]">
-              {analysis.style || "Detailed Report"}
-            </span>
+        {/* Question */}
+        <div className="text-white/60 text-[14px] leading-relaxed bg-white/[0.02] p-5 rounded-2xl border border-white/[0.04] mb-6 nodrag nowheel font-light">
+          {analysis.question}
+        </div>
+
+        {/* Market mini-stats */}
+        {market && (
+          <div className="grid grid-cols-3 gap-3 mb-6">
+            <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] p-3">
+              <span className="text-[9px] text-white/30 uppercase tracking-[0.15em] block mb-1.5">
+                Market Cap
+              </span>
+              <span className="text-[13px] font-mono font-medium text-white/80">
+                {fmt(market.marketCap)}
+              </span>
+            </div>
+            <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] p-3">
+              <span className="text-[9px] text-white/30 uppercase tracking-[0.15em] block mb-1.5">
+                24h Vol
+              </span>
+              <span className="text-[13px] font-mono font-medium text-white/80">
+                {fmt(market.volume)}
+              </span>
+            </div>
+            <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] p-3">
+              <span className="text-[9px] text-white/30 uppercase tracking-[0.15em] block mb-1.5">
+                7d Change
+              </span>
+              <span
+                className={`text-[13px] font-mono font-medium ${market.change7d != null ? (market.change7d >= 0 ? "text-[#00E5A0]" : "text-red-400") : "text-white/40"}`}
+              >
+                {market.change7d != null
+                  ? `${market.change7d >= 0 ? "+" : ""}${market.change7d.toFixed(2)}%`
+                  : "—"}
+              </span>
+            </div>
           </div>
+        )}
+
+        {/* Meta tags */}
+        <div className="flex flex-wrap gap-2">
+          <span className="text-[9px] font-semibold tracking-widest uppercase text-[#00E5A0] px-3 py-1.5 rounded-full bg-[#00E5A0]/10 border border-[#00E5A0]/20">
+            {analysis.category}
+          </span>
+          <span className="text-[9px] font-semibold tracking-widest uppercase text-white/40 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.05]">
+            {analysis.language}
+          </span>
+          <span className="text-[9px] font-semibold tracking-widest uppercase text-white/40 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.05]">
+            {analysis.style || "Detailed Report"}
+          </span>
         </div>
       </div>
       <Handle type="source" position={Position.Right} className="!opacity-0 !w-0" />
@@ -251,40 +239,35 @@ const AgentNode = ({ data }) => {
     <>
       <Handle type="target" position={Position.Left} className="!opacity-0 !w-0" />
       <div
-        className={`w-[380px] transition-all duration-700 ${isWinnerNode ? "scale-[1.02]" : isLoser ? "opacity-40 grayscale-[30%]" : ""}`}
+        className={`w-[400px] transition-all duration-700 ${isWinnerNode ? "scale-[1.02]" : isLoser ? "opacity-30 grayscale-[50%]" : ""}`}
       >
         <div
-          className={`w-full rounded-2xl relative overflow-hidden transition-all duration-500 ${isWinnerNode ? "border-[#f7c94b]/40 bg-[#0a0b12]" : "border-white/[0.06] bg-[#0a0b12]"}`}
+          className={`w-full rounded-[24px] relative overflow-hidden transition-all duration-500 bg-[#060B18]/60 backdrop-blur-xl ${isWinnerNode ? "border-[#00E5A0]/40 shadow-[0_0_30px_rgba(0,229,160,0.1)]" : "border-white/[0.04] shadow-2xl"}`}
           style={{ borderWidth: "1px", borderStyle: "solid" }}
         >
-          {/* Winner glow bar */}
+          {/* Winner top glow */}
           {isWinnerNode && (
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#f7c94b] to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00E5A0] to-transparent" />
           )}
 
-          <div className="p-5">
+          <div className="p-6">
             {/* Agent identity */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-4 mb-5">
               <div
-                className="w-11 h-11 rounded-xl flex items-center justify-center"
-                style={{
-                  background: `linear-gradient(135deg, ${agent.avatarColor}18, ${agent.avatarColor}05)`,
-                  border: `1px solid ${agent.avatarColor}30`,
-                  color: agent.avatarColor,
-                }}
+                className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/[0.02] border border-white/[0.05]"
               >
                 {AGENT_ICONS[agentSlug]}
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-[15px] text-white/90">{agent.name}</h3>
-                <p className="text-[9px] text-white/30 font-mono tracking-[0.15em] uppercase mt-0.5">
+                <h3 className="font-medium text-[16px] text-white/90">{agent.name}</h3>
+                <p className="text-[10px] text-white/40 font-mono tracking-widest uppercase mt-1">
                   {agent.type}
                 </p>
               </div>
               {isWinnerNode && voted && (
-                <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#f7c94b]/10 border border-[#f7c94b]/25">
-                  <RiTrophyLine className="text-[#f7c94b] text-xs" />
-                  <span className="text-[9px] font-bold text-[#f7c94b] uppercase tracking-wider">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00E5A0]/10 border border-[#00E5A0]/20">
+                  <RiTrophyLine className="text-[#00E5A0] text-[10px]" />
+                  <span className="text-[9px] font-bold text-[#00E5A0] uppercase tracking-widest">
                     Winner
                   </span>
                 </div>
@@ -292,16 +275,16 @@ const AgentNode = ({ data }) => {
             </div>
 
             {/* Stats row */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-4 mb-6">
               {responseMs > 0 && (
-                <div className="flex items-center gap-1 text-[10px] font-mono text-white/25">
-                  <RiTimeLine />
+                <div className="flex items-center gap-1.5 text-[11px] font-mono text-white/40">
+                  <RiTimeLine className="text-sm" />
                   {(responseMs / 1000).toFixed(1)}s
                 </div>
               )}
               {wordCount > 0 && (
-                <div className="flex items-center gap-1 text-[10px] font-mono text-white/25">
-                  <RiBarChartBoxLine />
+                <div className="flex items-center gap-1.5 text-[11px] font-mono text-white/40">
+                  <RiBarChartBoxLine className="text-sm" />
                   {wordCount} words
                 </div>
               )}
@@ -310,15 +293,10 @@ const AgentNode = ({ data }) => {
             {/* Read Full Analysis button */}
             <button
               onClick={() => onOpenDetail(agentSlug)}
-              className="w-full py-2 rounded-lg text-[11px] font-semibold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 mb-3"
-              style={{
-                background: `linear-gradient(135deg, ${agent.avatarColor}10, ${agent.avatarColor}05)`,
-                border: `1px solid ${agent.avatarColor}20`,
-                color: agent.avatarColor,
-              }}
+              className="w-full py-2.5 rounded-xl text-[11px] font-semibold uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 mb-3 bg-white/[0.02] border border-white/[0.05] text-white/60 hover:text-white/90 hover:bg-white/[0.04]"
             >
               <RiSparklingLine />
-              Read Full Analysis
+              View Full Report
             </button>
 
             {/* Vote / Status */}
@@ -326,34 +304,31 @@ const AgentNode = ({ data }) => {
               <button
                 onClick={onVote}
                 disabled={voting}
-                className={`w-full relative rounded-xl overflow-hidden group py-3 flex items-center justify-center font-bold text-white tracking-wide text-[12px] transition-all cursor-pointer ${voting ? "opacity-50 cursor-not-allowed" : ""}`}
-                style={{
-                  background: "linear-gradient(135deg, #00E5A0 0%, #00E5A0 50%, #00B87A 100%)",
-                }}
+                className={`w-full py-3.5 rounded-xl font-semibold text-[12px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
+                  voting 
+                    ? "bg-white/[0.04] text-white/30 cursor-not-allowed border border-white/[0.05]" 
+                    : "bg-[#00E5A0] text-[#060B18] hover:bg-[#4AEDC4] shadow-[0_0_20px_rgba(0,229,160,0.15)]"
+                }`}
               >
-                {/* Sweep */}
-                <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1000ms] ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 pointer-events-none" />
-                <span className="relative z-10 flex items-center gap-2">
-                  {voting ? (
-                    <>
-                      <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white/90 rounded-full animate-spin" />
-                      Locking...
-                    </>
-                  ) : (
-                    <>
-                      <RiCheckboxCircleLine className="text-sm" />
-                      Select as Best
-                    </>
-                  )}
-                </span>
+                {voting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/20 border-t-white/90 rounded-full animate-spin" />
+                    Locking...
+                  </>
+                ) : (
+                  <>
+                    <RiCheckboxCircleLine className="text-base" />
+                    Select as Best
+                  </>
+                )}
               </button>
             ) : isWinnerNode ? (
-              <div className="flex items-center justify-center gap-2 py-3 rounded-xl bg-[#f7c94b]/8 border border-[#f7c94b]/25 text-[#f7c94b] text-[11px] font-bold tracking-[0.15em] uppercase">
-                <RiTrophyLine />
+              <div className="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#00E5A0]/10 border border-[#00E5A0]/20 text-[#00E5A0] text-[11px] font-bold tracking-[0.15em] uppercase">
+                <RiTrophyLine className="text-base" />
                 Winning Protocol
               </div>
             ) : (
-              <div className="py-3 rounded-xl bg-white/[0.02] text-white/15 text-[11px] font-medium tracking-wide w-full text-center border border-white/[0.02] uppercase">
+              <div className="py-3.5 rounded-xl bg-white/[0.02] text-white/20 text-[11px] font-medium tracking-widest w-full text-center border border-white/[0.03] uppercase">
                 Dormant
               </div>
             )}
@@ -370,15 +345,15 @@ const SectionNode = ({ data }) => (
   <>
     <Handle type="target" position={Position.Left} className="!opacity-0 !w-0" />
     <div
-      className={`w-[500px] h-[200px] rounded-xl overflow-hidden transition-all duration-500 ${data.isWinnerNode ? "border-[#f7c94b]/20 scale-[1.01]" : "border-white/[0.05]"} bg-[#0b0c12]`}
+      className={`w-[520px] h-[220px] rounded-[24px] overflow-hidden transition-all duration-500 bg-[#060B18]/60 backdrop-blur-xl shadow-2xl ${data.isWinnerNode ? "border-[#00E5A0]/30 scale-[1.01]" : "border-white/[0.04]"}`}
       style={{ borderWidth: "1px", borderStyle: "solid" }}
     >
-      <div className="w-full h-full p-5 flex flex-col relative">
-        <h4 className="text-[11px] font-bold text-[#00E5A0] mb-2.5 pb-2 border-b border-white/[0.04] tracking-[0.12em] uppercase flex items-center gap-1.5 shrink-0">
-          <RiSparklingLine className="text-sm" />
+      <div className="w-full h-full p-6 sm:p-8 flex flex-col relative">
+        <h4 className="text-[11px] font-bold text-[#00E5A0] mb-4 pb-3 border-b border-white/[0.06] tracking-widest uppercase flex items-center gap-2 shrink-0">
+          <RiSparklingLine className="text-base" />
           {data.title}
         </h4>
-        <div className="premium-markdown flex-1 text-[12.5px] leading-[1.7] text-white/60 overflow-y-auto custom-scrollbar pr-2 nodrag nowheel font-light">
+        <div className="premium-markdown flex-1 text-[13px] leading-[1.8] text-white/60 overflow-y-auto custom-scrollbar pr-3 nodrag nowheel font-light">
           <MarkdownRenderer content={data.content} />
         </div>
       </div>
@@ -394,12 +369,12 @@ const StatsNode = ({ data }) => {
   return (
     <>
       <Handle type="target" position={Position.Left} className="!opacity-0 !w-0" />
-      <div className="w-[300px] rounded-xl border border-white/[0.06] bg-[#0b0c12] p-5">
-        <div className="text-[10px] text-[#2dd4a0] font-bold uppercase tracking-[0.2em] mb-3 flex items-center gap-1.5">
-          <RiPieChartLine />
+      <div className="w-[320px] rounded-[24px] border border-white/[0.04] bg-[#060B18]/60 backdrop-blur-xl shadow-2xl p-6">
+        <div className="text-[10px] text-[#00E5A0] font-bold uppercase tracking-[0.2em] mb-4 flex items-center gap-2 pb-3 border-b border-white/[0.06]">
+          <RiPieChartLine className="text-sm" />
           Supply Data
         </div>
-        <div className="space-y-2.5">
+        <div className="space-y-3">
           {[
             { label: "Circulating", value: fmtSupply(market.circulatingSupply) },
             { label: "Total Supply", value: fmtSupply(market.totalSupply) },
@@ -417,7 +392,7 @@ const StatsNode = ({ data }) => {
               color:
                 market.athChange != null
                   ? market.athChange >= 0
-                    ? "#2dd4a0"
+                    ? "#00E5A0"
                     : "#ff6b5b"
                   : undefined,
             },
@@ -430,18 +405,18 @@ const StatsNode = ({ data }) => {
               color:
                 market.change30d != null
                   ? market.change30d >= 0
-                    ? "#2dd4a0"
+                    ? "#00E5A0"
                     : "#ff6b5b"
                   : undefined,
             },
           ].map((item) => (
             <div
               key={item.label}
-              className="flex items-center justify-between text-[11px]"
+              className="flex items-center justify-between text-[12px]"
             >
-              <span className="text-white/25 font-medium">{item.label}</span>
+              <span className="text-white/40 font-medium tracking-wide">{item.label}</span>
               <span
-                className="font-mono font-semibold text-white/70"
+                className="font-mono font-medium text-white/80"
                 style={{ color: item.color }}
               >
                 {item.value}
@@ -657,38 +632,35 @@ const DetailPanel = ({ agentSlug, responses, onClose }) => {
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
       transition={{ type: "spring", damping: 30, stiffness: 300 }}
-      className="fixed top-0 right-0 w-full sm:w-[520px] h-full z-[100] bg-[#0a0b12] border-l border-white/[0.06] flex flex-col"
+      className="fixed top-0 right-0 w-full sm:w-[560px] h-full z-[100] bg-[#060B18]/95 backdrop-blur-2xl border-l border-white/[0.04] shadow-2xl flex flex-col"
     >
       {/* Panel header */}
-      <div className="flex items-center gap-3 p-5 border-b border-white/[0.06] shrink-0">
+      <div className="flex items-center gap-4 p-6 sm:p-8 border-b border-white/[0.04] shrink-0">
         <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center"
-          style={{
-            background: `linear-gradient(135deg, ${agent.avatarColor}15, ${agent.avatarColor}05)`,
-            border: `1px solid ${agent.avatarColor}30`,
-            color: agent.avatarColor,
-          }}
+          className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/[0.02] border border-white/[0.05]"
         >
           {AGENT_ICONS[agentSlug]}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-sm">{agent.name}</h3>
-          <p className="text-[9px] text-white/30 font-mono uppercase tracking-[0.15em]">
+          <h3 className="font-medium text-[16px] text-white/90">{agent.name}</h3>
+          <p className="text-[10px] text-white/40 font-mono uppercase tracking-widest mt-1">
             {agent.type} · {response.content?.split(/\s+/).length || 0} words ·{" "}
             {(response.responseMs / 1000).toFixed(1)}s
           </p>
         </div>
         <button
           onClick={onClose}
-          className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/40 hover:text-white/70 hover:bg-white/[0.08] transition-colors cursor-pointer"
+          className="w-10 h-10 rounded-xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-white/80 hover:bg-white/[0.05] transition-colors cursor-pointer"
         >
-          <RiCloseLine className="text-lg" />
+          <RiCloseLine className="text-xl" />
         </button>
       </div>
 
       {/* Panel body */}
-      <div className="flex-1 overflow-y-auto p-5 custom-scrollbar">
-        <MarkdownRenderer content={response.content} />
+      <div className="flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar">
+        <div className="premium-markdown font-light text-[13.5px] leading-[1.8] text-white/70">
+          <MarkdownRenderer content={response.content} />
+        </div>
       </div>
     </motion.div>
   );
@@ -701,18 +673,18 @@ const MobileCardView = ({ analysis, responses, winner, handleVote, voting, voted
   const [expanded, setExpanded] = useState(null);
 
   return (
-    <div className="p-4 pb-24 space-y-4">
+    <div className="p-5 pb-24 space-y-5">
       {/* Token info */}
-      <div className="rounded-2xl bg-[#0b0c12] border border-white/[0.06] p-5">
-        <div className="flex items-center gap-3 mb-3">
+      <div className="rounded-[24px] bg-[#060B18]/60 backdrop-blur-xl border border-white/[0.04] shadow-2xl p-6">
+        <div className="flex items-center gap-4 mb-4">
           {market?.image && (
-            <img src={market.image} alt="" className="w-8 h-8 rounded-full" />
+            <img src={market.image} alt="" className="w-10 h-10 rounded-full border border-white/10" />
           )}
           <div className="flex-1">
-            <h2 className="text-xl font-bold">{analysis.token}</h2>
+            <h2 className="text-2xl font-medium text-white/90 tracking-tight">{analysis.token}</h2>
             {market?.symbol && (
-              <span className="text-[10px] font-mono text-white/25">
-                {market.symbol}{market.rank ? ` · #${market.rank}` : ""}
+              <span className="text-[11px] font-mono text-white/40 tracking-widest uppercase mt-1 block">
+                {market.symbol}{market.rank ? ` · Rank ${market.rank}` : ""}
               </span>
             )}
           </div>
@@ -729,14 +701,14 @@ const MobileCardView = ({ analysis, responses, winner, handleVote, voting, voted
             </div>
           )}
         </div>
-        <p className="text-xs text-white/35 leading-relaxed">{analysis.question}</p>
+        <p className="text-[13px] font-light text-white/50 leading-relaxed bg-white/[0.02] p-4 rounded-2xl border border-white/[0.03]">{analysis.question}</p>
       </div>
 
       {/* Winner banner */}
       {voted && winner && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#f7c94b]/5 border border-[#f7c94b]/15">
-          <RiTrophyLine className="text-[#f7c94b]" />
-          <span className="text-xs font-medium text-[#f7c94b]">
+        <div className="flex items-center gap-2 px-5 py-4 rounded-2xl bg-[#00E5A0]/10 border border-[#00E5A0]/20">
+          <RiTrophyLine className="text-[#00E5A0]" />
+          <span className="text-[11px] font-bold tracking-widest text-[#00E5A0] uppercase">
             {AGENT_MAP[winner]?.name} won
           </span>
         </div>
@@ -752,28 +724,26 @@ const MobileCardView = ({ analysis, responses, winner, handleVote, voting, voted
         return (
           <div
             key={resp.agentSlug}
-            className={`rounded-2xl border overflow-hidden transition-all ${isWin && voted ? "border-[#f7c94b]/30" : voted && !isWin ? "border-white/[0.04] opacity-50" : "border-white/[0.06]"} bg-[#0b0c12]`}
+            className={`rounded-[24px] border overflow-hidden transition-all bg-[#060B18]/60 backdrop-blur-xl shadow-2xl ${isWin && voted ? "border-[#00E5A0]/40 shadow-[0_0_20px_rgba(0,229,160,0.1)]" : voted && !isWin ? "border-white/[0.02] opacity-50 grayscale" : "border-white/[0.04]"}`}
           >
-            <div className="p-4">
-              <div className="flex items-center gap-3 mb-3">
+            {isWin && (
+              <div className="h-1 bg-gradient-to-r from-transparent via-[#00E5A0] to-transparent" />
+            )}
+            <div className="p-5">
+              <div className="flex items-center gap-4 mb-4">
                 <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center"
-                  style={{
-                    background: `linear-gradient(135deg, ${agent.avatarColor}15, ${agent.avatarColor}05)`,
-                    border: `1px solid ${agent.avatarColor}30`,
-                    color: agent.avatarColor,
-                  }}
+                  className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/[0.02] border border-white/[0.05]"
                 >
                   {AGENT_ICONS[resp.agentSlug]}
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold">{agent.name}</p>
-                  <p className="text-[9px] text-white/25 font-mono uppercase">
+                  <p className="text-[15px] font-medium text-white/90">{agent.name}</p>
+                  <p className="text-[10px] text-white/40 font-mono uppercase tracking-widest mt-0.5">
                     {agent.type}
                   </p>
                 </div>
                 {isWin && voted && (
-                  <span className="text-[9px] text-[#f7c94b] bg-[#f7c94b]/10 px-2 py-0.5 rounded flex items-center gap-1">
+                  <span className="text-[9px] text-[#00E5A0] bg-[#00E5A0]/10 px-2 py-1 rounded-md flex items-center gap-1 font-bold uppercase tracking-widest">
                     <RiTrophyLine /> Winner
                   </span>
                 )}
@@ -783,14 +753,11 @@ const MobileCardView = ({ analysis, responses, winner, handleVote, voting, voted
                 <button
                   onClick={() => handleVote(resp.agentSlug)}
                   disabled={voting}
-                  className="w-full py-2.5 rounded-xl text-[11px] font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 mb-2"
-                  style={{
-                    background: `linear-gradient(135deg, ${agent.avatarColor}12, ${agent.avatarColor}06)`,
-                    border: `1px solid ${agent.avatarColor}20`,
-                    color: agent.avatarColor,
-                  }}
+                  className={`w-full py-3 rounded-xl text-[11px] font-semibold tracking-widest transition-all uppercase flex items-center justify-center gap-2 mb-2 ${
+                    voting ? "bg-white/[0.04] text-white/30 cursor-not-allowed border border-white/[0.05]" : "bg-[#00E5A0] text-[#060B18] hover:bg-[#4AEDC4]"
+                  }`}
                 >
-                  <RiCheckboxCircleLine />
+                  <RiCheckboxCircleLine className="text-sm" />
                   Select as Best
                 </button>
               )}
@@ -799,11 +766,11 @@ const MobileCardView = ({ analysis, responses, winner, handleVote, voting, voted
             <div className="border-t border-white/[0.04]">
               <button
                 onClick={() => setExpanded(isExp ? null : resp.agentSlug)}
-                className="w-full flex items-center justify-between px-4 py-2.5 text-[10px] text-white/35 hover:text-white/50 transition-colors cursor-pointer uppercase tracking-wider"
+                className="w-full flex items-center justify-between px-5 py-4 text-[10px] font-semibold text-white/40 hover:text-white/60 transition-colors cursor-pointer uppercase tracking-widest bg-white/[0.01]"
               >
-                <span className="flex items-center gap-1">
-                  <RiSparklingLine style={{ color: agent.avatarColor }} />
-                  {isExp ? "Collapse" : "View Analysis"}
+                <span className="flex items-center gap-2">
+                  <RiSparklingLine className="text-sm text-[#00E5A0]" />
+                  {isExp ? "Collapse" : "View Report"}
                 </span>
                 <RiArrowDownLine className={`transition-transform ${isExp ? "rotate-180" : ""}`} />
               </button>
@@ -816,8 +783,10 @@ const MobileCardView = ({ analysis, responses, winner, handleVote, voting, voted
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pb-4 max-h-[50vh] overflow-y-auto custom-scrollbar">
-                      <MarkdownRenderer content={resp.content} />
+                    <div className="px-5 pb-5 max-h-[50vh] overflow-y-auto custom-scrollbar">
+                      <div className="premium-markdown font-light text-[12.5px] leading-[1.8] text-white/70">
+                        <MarkdownRenderer content={resp.content} />
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -917,10 +886,10 @@ export default function InfiniteComparisonPage({ params }) {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 bg-[#060710] flex items-center justify-center">
+      <div className="fixed inset-0 bg-[#060B18] flex items-center justify-center">
         <div className="text-center">
           <LoadingSpinner size="lg" className="mx-auto mb-4" />
-          <p className="text-white/25 text-xs font-mono tracking-[0.2em] uppercase">
+          <p className="text-white/25 text-[10px] font-mono tracking-[0.2em] uppercase">
             Connecting to Intelligence Core...
           </p>
         </div>
@@ -930,12 +899,12 @@ export default function InfiniteComparisonPage({ params }) {
 
   if (!analysis) {
     return (
-      <div className="fixed inset-0 bg-[#060710] flex items-center justify-center">
-        <div className="text-center p-8 bg-[#0b0c12] rounded-2xl border border-white/[0.06] max-w-sm">
-          <p className="text-white/50 mb-4 text-sm">Analysis not found</p>
+      <div className="fixed inset-0 bg-[#060B18] flex items-center justify-center">
+        <div className="text-center p-8 bg-[#060B18]/60 backdrop-blur-xl rounded-[24px] border border-white/[0.04] max-w-sm shadow-2xl">
+          <p className="text-white/50 mb-6 text-sm">Analysis not found</p>
           <Link
             href="/arena"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06] text-white/50 text-sm"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/[0.04] border border-white/[0.06] text-white/50 hover:text-white/90 transition-colors text-xs font-semibold uppercase tracking-widest"
           >
             <RiArrowLeftLine />
             Back to Arena
@@ -946,7 +915,7 @@ export default function InfiniteComparisonPage({ params }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-[#060710] w-screen h-screen overflow-hidden">
+    <div className="fixed inset-0 bg-[#060B18] w-screen h-screen overflow-hidden">
       {/* Global CSS */}
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar {
@@ -960,56 +929,53 @@ export default function InfiniteComparisonPage({ params }) {
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(124, 117, 255, 0.3);
+          background: rgba(0, 229, 160, 0.3);
         }
         .react-flow__node {
           cursor: default;
         }
         .premium-markdown .prose strong {
           color: #fff;
-          font-weight: 600;
-          background: rgba(124, 117, 255, 0.1);
-          padding: 1px 5px;
-          border-radius: 4px;
+          font-weight: 500;
         }
         .premium-markdown .prose ul > li::marker {
-          color: #2dd4a0;
+          color: #00E5A0;
         }
         .premium-markdown .prose p {
-          margin-bottom: 0.5em;
+          margin-bottom: 0.8em;
         }
       `}</style>
 
       {/* ── Floating HUD ── */}
-      <div className="absolute top-0 left-0 right-0 p-4 sm:p-5 z-50 pointer-events-none flex justify-between items-start">
+      <div className="absolute top-0 left-0 right-0 p-5 sm:p-6 z-50 pointer-events-none flex justify-between items-start">
         {/* Left: Back */}
         <div className="pointer-events-auto">
           <Link
             href="/arena"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0a0b12]/90 backdrop-blur-2xl border border-white/[0.06] text-white/40 hover:text-white/70 transition-all text-[10px] font-mono uppercase tracking-[0.15em] font-semibold"
+            className="inline-flex items-center gap-2 px-4 py-3 rounded-[14px] bg-[#060B18]/80 backdrop-blur-2xl border border-white/[0.04] text-white/50 hover:text-white/90 hover:border-white/[0.08] hover:bg-[#060B18]/90 transition-all text-[10px] font-mono uppercase tracking-[0.15em] font-semibold shadow-xl"
           >
-            <RiArrowLeftLine />
+            <RiArrowLeftLine className="text-sm" />
             Arena
           </Link>
         </div>
 
         {/* Right: Status + Actions */}
-        <div className="flex items-center gap-2 pointer-events-auto">
+        <div className="flex items-center gap-3 pointer-events-auto">
           {/* View toggle */}
           <button
             onClick={() =>
               setViewMode(viewMode === "canvas" ? "cards" : "canvas")
             }
-            className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-[#0a0b12]/90 backdrop-blur-2xl border border-white/[0.06] text-white/40 hover:text-white/70 transition-all text-[10px] font-mono uppercase tracking-[0.12em] cursor-pointer"
+            className="flex items-center gap-2 px-4 py-3 rounded-[14px] bg-[#060B18]/80 backdrop-blur-2xl border border-white/[0.04] text-white/50 hover:text-white/90 hover:border-white/[0.08] transition-all text-[10px] font-mono uppercase tracking-[0.15em] font-semibold cursor-pointer shadow-xl"
           >
             {viewMode === "canvas" ? (
               <>
-                <RiLayoutGridLine />
+                <RiLayoutGridLine className="text-sm" />
                 Cards
               </>
             ) : (
               <>
-                <RiRoadMapLine />
+                <RiRoadMapLine className="text-sm" />
                 Canvas
               </>
             )}
@@ -1018,15 +984,15 @@ export default function InfiniteComparisonPage({ params }) {
           {/* Share */}
           <button
             onClick={handleShare}
-            className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-[#0a0b12]/90 backdrop-blur-2xl border border-white/[0.06] text-white/40 hover:text-white/70 transition-all text-[10px] font-mono uppercase tracking-[0.12em] cursor-pointer"
+            className="flex items-center gap-2 px-4 py-3 rounded-[14px] bg-[#060B18]/80 backdrop-blur-2xl border border-white/[0.04] text-white/50 hover:text-white/90 hover:border-white/[0.08] transition-all text-[10px] font-mono uppercase tracking-[0.15em] font-semibold cursor-pointer shadow-xl"
           >
-            <RiShareLine />
+            <RiShareLine className="text-sm" />
             Share
           </button>
 
           {/* Status */}
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-[#0a0b12]/90 backdrop-blur-2xl border border-[#00E5A0]/20 text-[#00E5A0] text-[10px] font-bold tracking-[0.15em] uppercase">
-            <RiCheckboxCircleLine />
+          <div className="hidden sm:flex items-center gap-2 px-4 py-3 rounded-[14px] bg-[#060B18]/80 backdrop-blur-2xl border border-[#00E5A0]/20 text-[#00E5A0] text-[10px] tracking-[0.15em] uppercase font-bold shadow-xl">
+            <RiCheckboxCircleLine className="text-sm" />
             Online
           </div>
         </div>
@@ -1039,11 +1005,11 @@ export default function InfiniteComparisonPage({ params }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="absolute bottom-5 left-5 z-50 pointer-events-auto"
+            className="absolute bottom-6 left-6 z-50 pointer-events-auto"
           >
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0a0b12]/90 backdrop-blur-2xl border border-[#f7c94b]/25">
-              <RiTrophyLine className="text-[#f7c94b]" />
-              <span className="text-[10px] font-bold text-[#f7c94b] uppercase tracking-[0.15em]">
+            <div className="flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-[#060B18]/90 backdrop-blur-2xl border border-[#00E5A0]/30 shadow-[0_0_20px_rgba(0,229,160,0.15)]">
+              <RiTrophyLine className="text-[#00E5A0] text-lg" />
+              <span className="text-[11px] font-bold text-[#00E5A0] uppercase tracking-[0.15em]">
                 {AGENT_MAP[winner]?.name}
               </span>
             </div>
@@ -1066,16 +1032,18 @@ export default function InfiniteComparisonPage({ params }) {
           />
         </ReactFlowProvider>
       ) : (
-        <div className="w-full h-full overflow-y-auto pt-16">
-          <MobileCardView
-            analysis={analysis}
-            responses={responses}
-            winner={winner}
-            handleVote={handleVote}
-            voting={voting}
-            voted={voted}
-            market={market}
-          />
+        <div className="w-full h-full overflow-y-auto pt-24 px-4 sm:px-6">
+          <div className="max-w-2xl mx-auto">
+            <MobileCardView
+              analysis={analysis}
+              responses={responses}
+              winner={winner}
+              handleVote={handleVote}
+              voting={voting}
+              voted={voted}
+              market={market}
+            />
+          </div>
         </div>
       )}
 
@@ -1088,7 +1056,7 @@ export default function InfiniteComparisonPage({ params }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setDetailAgent(null)}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99]"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[99]"
             />
             <DetailPanel
               agentSlug={detailAgent}
