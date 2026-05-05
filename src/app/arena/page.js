@@ -13,7 +13,8 @@ import {
   RiMicroscopeLine,
   RiLineChartLine,
   RiShieldKeyholeLine,
-  RiSparklingLine
+  RiSparklingLine,
+  RiArrowRightLine
 } from "react-icons/ri";
 import AppShell from "@/components/layout/AppShell";
 import { useAppKitAccount } from "@reown/appkit/react";
@@ -22,8 +23,8 @@ import useAnalysisStore from "@/stores/useAnalysisStore";
 
 const AGENT_ICONS = {
   research: <RiMicroscopeLine className="w-5 h-5 text-[#00E5A0]" />,
-  market: <RiLineChartLine className="w-5 h-5 text-[#f7c94b]" />,
-  risk: <RiShieldKeyholeLine className="w-5 h-5 text-[#2dd4a0]" />
+  market: <RiLineChartLine className="w-5 h-5 text-[#2D7CF6]" />,
+  risk: <RiShieldKeyholeLine className="w-5 h-5 text-[#4AEDC4]" />
 };
 
 const QUESTION_PROMPTS = [
@@ -33,69 +34,25 @@ const QUESTION_PROMPTS = [
   "Track recent whale movements and analyze the on-chain liquidity depth."
 ];
 
-// Reusable Luxury Container
-const LuxuryContainer = ({ children, className = "" }) => (
-  <div 
-    className={`rounded p-[1px] relative bg-[#00E5A0]/20 ${className}`}
-  >
-    <div className="bg-[#0b0c10]/90 w-full h-full p-6 relative z-10 pl-8">
-      {/* Left decorative pattern bar */}
-      <div 
-        className="absolute left-0 top-0 w-6 h-full border-r border-[var(--pattern-fg)] pointer-events-none"
-        style={{
-          "--pattern-fg": "rgba(124, 117, 255, 0.2)",
-          backgroundImage: "repeating-linear-gradient(315deg, var(--pattern-fg) 0, var(--pattern-fg) 1px, transparent 0, transparent 50%)",
-          backgroundSize: "10px 10px"
-        }}
-      />
-      <div 
-        className="absolute right-0 top-0 w-6 h-full border-l border-[var(--pattern-fg)] pointer-events-none"
-        style={{
-          "--pattern-fg": "rgba(124, 117, 255, 0.2)",
-          backgroundImage: "repeating-linear-gradient(315deg, var(--pattern-fg) 0, var(--pattern-fg) 1px, transparent 0, transparent 50%)",
-          backgroundSize: "10px 10px"
-        }}
-      />
-      <div className="px-2">
-        {children}
-      </div>
-    </div>
+const PremiumCard = ({ children, className = "" }) => (
+  <div className={`rounded-[24px] border border-white/[0.04] bg-[#060B18]/60 backdrop-blur-xl shadow-2xl p-6 sm:p-10 ${className}`}>
+    {children}
   </div>
 );
 
-const LuxuryButton = ({ children, disabled, type = "button", className = "" }) => (
+const PremiumButton = ({ children, disabled, type = "button", className = "" }) => (
   <motion.button
     type={type}
     disabled={disabled}
-    whileHover={disabled ? {} : { scale: 1.02 }}
-    whileTap={disabled ? {} : { scale: 0.98 }}
-    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-    className={`w-full relative rounded-xl overflow-hidden group ${disabled ? "opacity-50 cursor-not-allowed" : "hover:shadow-[0_0_35px_-5px_rgba(124,117,255,0.6)]"} ${className}`}
+    whileHover={disabled ? {} : { scale: 1.01 }}
+    whileTap={disabled ? {} : { scale: 0.99 }}
+    className={`w-full py-4 rounded-xl font-semibold text-sm tracking-wide transition-all flex items-center justify-center gap-2 ${
+      disabled 
+        ? "bg-white/[0.04] text-white/30 cursor-not-allowed border border-white/[0.05]" 
+        : "bg-[#00E5A0] text-[#060B18] hover:bg-[#4AEDC4] shadow-[0_0_20px_rgba(0,229,160,0.15)]"
+    } ${className}`}
   >
-    <div 
-      className="w-full h-full rounded-xl py-4 flex items-center justify-center font-bold text-white tracking-wide transition-all duration-500 relative z-10"
-      style={{
-        background: 'linear-gradient(135deg, #00E5A0 0%, #00E5A0 50%, #00B87A 100%)'
-      }}
-    >
-      {/* Noise overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-      
-      {/* Inner subtle glow/shadow for 3D depth */}
-      <div className="absolute inset-0 rounded-xl shadow-[inset_0_2px_4px_rgba(255,255,255,0.3),inset_0_-4px_10px_rgba(0,0,0,0.15)] pointer-events-none" />
-
-      {/* Sweeping light effect on hover */}
-      <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1000ms] ease-in-out bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 pointer-events-none" />
-
-      <div className="relative z-10 drop-shadow-[0_2px_2px_rgba(0,0,0,0.15)]">
-        {children}
-      </div>
-    </div>
+    {children}
   </motion.button>
 );
 
@@ -104,7 +61,7 @@ const fadeUp = {
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.08 },
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
   }),
 };
 
@@ -216,50 +173,41 @@ export default function ArenaPage() {
 
   return (
     <AppShell>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+      <div className="max-w-[900px] mx-auto px-4 sm:px-6 py-12 md:py-20">
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
         >
           {/* Header */}
-          <motion.div variants={fadeUp} custom={0} className="mb-10 text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-              Analysis <span className="text-[#00E5A0]">Arena</span>
+          <motion.div variants={fadeUp} custom={0} className="mb-12 text-center">
+            <h1 className="text-4xl md:text-5xl font-medium mb-5 tracking-tight text-white/90">
+              Initiate <span className="font-semibold text-white">Analysis</span>
             </h1>
-            <p className="text-white/50 max-w-2xl text-balance mx-auto text-sm md:text-base font-light">
-              Submit your crypto question and let three elite AI agents compete to deliver pixel-perfect analytics and insights.
+            <p className="text-white/40 max-w-xl mx-auto text-sm md:text-base font-light leading-relaxed">
+              Deploy our decentralized network of specialized AI agents to evaluate tokens, analyze sentiment, and map risk profiles.
             </p>
           </motion.div>
 
-          {/* Agent cards built with luxurious inline design */}
+          {/* Active Agents Preview */}
           <motion.div
             variants={fadeUp}
             custom={1}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12"
           >
             {AGENTS.map((agent) => (
               <div 
                 key={agent.slug}
-                className="flex items-center gap-4 p-4 rounded-xl relative group transition-all"
-                style={{
-                  background: 'repeating-linear-gradient(45deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 8px, transparent 8px, transparent 16px)',
-                  border: `1px solid ${agent.avatarColor}30`,
-                  backgroundColor: '#0a0b12'
-                }}
+                className="flex items-center gap-4 p-5 rounded-2xl border border-white/[0.03] bg-white/[0.01] hover:bg-white/[0.03] transition-colors group"
               >
                 <div 
-                  className="w-[42px] h-[42px] rounded-full flex items-center justify-center relative shadow-none"
-                  style={{
-                    background: `linear-gradient(135deg, ${agent.avatarColor}20, ${agent.avatarColor}05)`,
-                    border: `1px solid ${agent.avatarColor}40`
-                  }}
+                  className="w-10 h-10 rounded-xl flex items-center justify-center border border-white/[0.05] bg-white/[0.02] group-hover:scale-110 transition-transform duration-500 ease-out"
                 >
                   {AGENT_ICONS[agent.slug]}
                 </div>
                 <div>
-                  <p className="text-[15px] font-semibold text-white/90">{agent.name}</p>
-                  <p className="text-xs text-white/40 font-mono tracking-tight uppercase">
+                  <p className="text-[13px] font-medium text-white/80">{agent.name}</p>
+                  <p className="text-[10px] text-white/30 font-mono tracking-wider uppercase mt-0.5">
                     {agent.type}
                   </p>
                 </div>
@@ -267,164 +215,182 @@ export default function ArenaPage() {
             ))}
           </motion.div>
 
-          {/* Input Form Wrapp*/}
+          {/* Input Form Wrapper */}
           <motion.div variants={fadeUp} custom={2}>
             <form onSubmit={handleSubmit}>
-              <LuxuryContainer className="space-y-8">
+              <PremiumCard className="space-y-8">
                 
                 {/* Search Fields Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative" ref={autocompleteRef}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 relative" ref={autocompleteRef}>
                   {/* Token Name with Autocomplete */}
                   <div className="relative">
-                    <label className="flex items-center gap-2 text-sm font-semibold text-white/80 mb-2.5">
-                      <RiCoinLine className="text-[#f7c94b]" />
-                      Token / Project Name *
+                    <label className="flex items-center gap-2 text-[11px] font-semibold text-white/40 mb-3 uppercase tracking-widest">
+                      <RiCoinLine className="text-sm" />
+                      Target Asset *
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. Bitcoin, Solana..."
                       value={searchQuery}
                       onChange={handleSearchChange}
-                      className="w-full px-5 py-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] text-white placeholder-white/20 focus:outline-none focus:border-[#00E5A0]/80 transition-all text-sm shadow-none"
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-white placeholder-white/20 focus:outline-none focus:border-[#00E5A0] transition-colors text-lg font-medium shadow-none rounded-none"
                       required
                     />
 
                     {/* Suggestions Dropdown */}
                     <AnimatePresence>
                       {showSuggestions && (suggestions.length > 0 || isSearching) && (
-                        <motion.ul 
-                          initial={{ opacity: 0, y: -5 }}
+                        <motion.div 
+                          initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          className="absolute z-50 w-full mt-2 bg-[#0d0f1a] border border-white/10 rounded-xl overflow-hidden backdrop-blur-2xl py-1 shadow-none"
+                          exit={{ opacity: 0, y: 5 }}
+                          className="absolute z-50 w-full mt-3 bg-[#060B18] border border-white/[0.08] rounded-2xl overflow-hidden shadow-2xl"
                         >
                           {isSearching ? (
-                            <li className="px-5 py-4 text-xs text-white/30 text-center animate-pulse">Searching CoinGecko...</li>
+                            <div className="px-5 py-4 text-xs text-white/30 text-center animate-pulse">Searching global registry...</div>
                           ) : (
-                            suggestions.map((coin) => (
-                              <li 
-                                key={coin.id} 
-                                onClick={() => handleSelectToken(coin)}
-                                className="px-5 py-3 hover:bg-white/[0.04] cursor-pointer flex items-center gap-4 transition-colors border-b border-white/[0.02] last:border-0"
-                              >
-                                <img src={coin.thumb} alt={coin.name} className="w-5 h-5 rounded-full object-cover" />
-                                <span className="text-white/90 text-sm font-medium">{coin.name}</span>
-                                <span className="text-white/30 text-xs font-mono uppercase">{coin.symbol}</span>
-                              </li>
-                            ))
+                            <ul>
+                              {suggestions.map((coin) => (
+                                <li 
+                                  key={coin.id} 
+                                  onClick={() => handleSelectToken(coin)}
+                                  className="px-5 py-3 hover:bg-white/[0.04] cursor-pointer flex items-center gap-4 transition-colors border-b border-white/[0.02] last:border-0"
+                                >
+                                  <img src={coin.thumb} alt={coin.name} className="w-6 h-6 rounded-full object-cover border border-white/10" />
+                                  <span className="text-white/80 text-sm font-medium">{coin.name}</span>
+                                  <span className="text-white/30 text-[10px] font-mono uppercase px-2 py-0.5 rounded-md bg-white/[0.03]">{coin.symbol}</span>
+                                </li>
+                              ))}
+                            </ul>
                           )}
-                        </motion.ul>
+                        </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
 
                   {/* Contract Address */}
                   <div>
-                    <label className="flex items-center gap-2 text-sm font-semibold text-white/80 mb-2.5">
-                      <RiSearchLine className="text-[#4a9eff]" />
-                      Contract Address (Optional)
+                    <label className="flex items-center gap-2 text-[11px] font-semibold text-white/40 mb-3 uppercase tracking-widest">
+                      <RiSearchLine className="text-sm" />
+                      Contract Address
                     </label>
                     <input
                       type="text"
-                      placeholder="0x... (Auto-fills if available)"
+                      placeholder="Optional (0x...)"
                       value={input.contractAddress}
                       onChange={(e) => setInput("contractAddress", e.target.value)}
-                      className="w-full px-5 py-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] text-white placeholder-white/20 focus:outline-none focus:border-[#00E5A0]/80 transition-all text-sm font-mono shadow-none"
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-white placeholder-white/20 focus:outline-none focus:border-[#00E5A0] transition-colors text-lg font-mono shadow-none rounded-none"
                     />
                   </div>
                 </div>
 
-                {/* Question Text Area */}
-                <div className="mt-4">
-                  <label className="flex items-center gap-2 text-sm font-semibold text-white/80 mb-2.5">
-                    <RiQuestionLine className="text-[#00E5A0]" />
-                    Analysis Question / Request *
-                  </label>
-                  <textarea
-                    placeholder="Provide a detailed scenario or click a suggestion below..."
-                    value={input.question}
-                    onChange={(e) => setInput("question", e.target.value)}
-                    rows={4}
-                    className="w-full px-5 py-4 rounded-xl bg-white/[0.02] border border-white/[0.06] text-white placeholder-white/20 focus:outline-none focus:border-[#00E5A0]/80 transition-all text-sm resize-none shadow-none leading-relaxed"
-                    required
-                  />
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent my-8" />
 
-                  {/* Question Suggestions */}
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="text-[11px] text-white/30 font-medium uppercase tracking-wider flex items-center gap-1 mt-0.5">
-                      <RiSparklingLine /> Let's try:
-                    </span>
-                    {QUESTION_PROMPTS.map((prompt, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => handlePromptClick(prompt)}
-                        className="text-[11px] bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.05] hover:border-white/20 text-white/60 hover:text-white/90 px-2.5 py-1 rounded-md transition-colors text-left max-w-[200px] sm:max-w-xs truncate shadow-none"
-                        title={prompt}
-                      >
-                        {prompt}
-                      </button>
-                    ))}
+                {/* Question Text Area */}
+                <div>
+                  <label className="flex items-center gap-2 text-[11px] font-semibold text-white/40 mb-3 uppercase tracking-widest">
+                    <RiQuestionLine className="text-sm" />
+                    Directive *
+                  </label>
+                  <div className="relative rounded-2xl border border-white/[0.08] bg-white/[0.01] focus-within:border-[#00E5A0]/50 focus-within:bg-white/[0.02] transition-colors overflow-hidden">
+                    <textarea
+                      placeholder="Specify your analysis requirements..."
+                      value={input.question}
+                      onChange={(e) => setInput("question", e.target.value)}
+                      rows={4}
+                      className="w-full px-6 py-6 bg-transparent text-white placeholder-white/20 focus:outline-none text-base resize-none leading-relaxed"
+                      required
+                    />
+                    <div className="px-6 py-3.5 border-t border-white/[0.04] bg-[#060B18]/50 flex flex-wrap gap-2 items-center">
+                      <span className="text-[10px] text-white/40 font-medium uppercase tracking-widest mr-2">
+                        Presets:
+                      </span>
+                      {QUESTION_PROMPTS.map((prompt, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => handlePromptClick(prompt)}
+                          className="text-[10px] bg-white/[0.03] hover:bg-white/[0.08] text-white/60 hover:text-white/90 px-3 py-1.5 rounded-full transition-colors text-left max-w-[150px] sm:max-w-[200px] truncate border border-transparent hover:border-white/[0.05]"
+                          title={prompt}
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
                 {/* Options Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-4">
                   {[
-                    { label: "Category", icon: RiFileTextLine, color: "#2dd4a0", key: "category", options: CATEGORIES },
-                    { label: "Language", icon: RiGlobalLine, color: "#4a9eff", key: "language", options: LANGUAGES },
-                    { label: "Style", icon: RiFileTextLine, color: "#ff6b5b", key: "style", options: STYLES },
+                    { label: "Category", icon: RiFileTextLine, key: "category", options: CATEGORIES },
+                    { label: "Language", icon: RiGlobalLine, key: "language", options: LANGUAGES },
+                    { label: "Format", icon: RiFileTextLine, key: "style", options: STYLES },
                   ].map((field) => (
                     <div key={field.key}>
-                      <label className="flex items-center gap-2 text-[13px] font-semibold text-white/70 mb-2">
-                        <field.icon style={{ color: field.color }} />
+                      <label className="flex items-center gap-2 text-[11px] font-semibold text-white/40 mb-3 uppercase tracking-widest">
+                        <field.icon className="text-sm" />
                         {field.label}
                       </label>
-                      <select
-                        value={input[field.key]}
-                        onChange={(e) => setInput(field.key, e.target.value)}
-                        className="w-full px-4 py-3 rounded-lg bg-white/[0.02] border border-white/[0.06] text-white/90 focus:outline-none focus:border-[#00E5A0]/80 transition-all text-[13px] appearance-none cursor-pointer shadow-none"
-                      >
-                        {field.options.map((opt) => (
-                          <option key={opt} value={opt} className="bg-[#0b0c10] text-white/90">
-                            {opt}
-                          </option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={input[field.key]}
+                          onChange={(e) => setInput(field.key, e.target.value)}
+                          className="w-full px-0 py-3 bg-transparent border-b border-white/[0.08] text-white/80 focus:outline-none focus:border-[#00E5A0] transition-colors text-sm appearance-none cursor-pointer rounded-none"
+                        >
+                          {field.options.map((opt) => (
+                            <option key={opt} value={opt} className="bg-[#0b0c10] text-white/90 py-2">
+                              {opt}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-white/20">
+                          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
 
                 {/* Error Block */}
-                {error && (
-                  <div className="px-5 py-4 rounded-xl bg-[#ff6b5b]/5 border border-[#ff6b5b]/20 text-[#ff6b5b]/90 text-sm shadow-none">
-                    {error}
-                  </div>
-                )}
+                <AnimatePresence>
+                  {error && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm mt-4 text-center">
+                        {error}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Submit Button */}
-                <div className="pt-2 mt-6">
-                  <LuxuryButton
+                <div className="pt-8">
+                  <PremiumButton
                     type="submit"
                     disabled={isSubmitting || !input.token.trim() || !input.question.trim()}
                   >
-                    <span className="flex items-center justify-center gap-2">
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/20 border-t-white/90 rounded-full animate-spin shadow-none" />
-                          <span className="tracking-wide">Orchestrating Intel...</span>
-                        </>
-                      ) : (
-                        <>
-                          <RiSendPlaneLine className="text-xl" />
-                          <span className="tracking-wide uppercase text-sm font-bold">Commence Analysis</span>
-                        </>
-                      )}
-                    </span>
-                  </LuxuryButton>
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/20 border-t-white/90 rounded-full animate-spin" />
+                        <span>Initializing Agents...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Deploy Analysis</span>
+                        <RiArrowRightLine className="text-lg" />
+                      </>
+                    )}
+                  </PremiumButton>
                 </div>
                 
-              </LuxuryContainer>
+              </PremiumCard>
             </form>
           </motion.div>
         </motion.div>
