@@ -7,9 +7,9 @@ import { wagmiAdapter, projectId, networks } from "@/lib/wallet";
 import { useState } from "react";
 
 const metadata = {
-  name: "Orkestri AI",
-  description: "Multi-Agent Crypto Analysis Arena",
-  url: typeof window !== "undefined" ? window.location.origin : "https://orkestri.ai",
+  name: "Synchestra AI",
+  description: "AI Agent Coordination Platform",
+  url: typeof window !== "undefined" ? window.location.origin : "https://synchestra.ai",
   icons: [],
 };
 
@@ -24,7 +24,7 @@ if (projectId && !appKitInitialized) {
     metadata,
     themeMode: "dark",
     themeVariables: {
-      "--w3m-accent": "#7c75ff",
+      "--w3m-accent": "#00E5A0",
       "--w3m-border-radius-master": "2px",
     },
     features: {

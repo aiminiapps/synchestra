@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export default function ScoreBar({
   value = 0,
   max = 100,
-  color = "#7c75ff",
+  color = "#00E5A0",
   height = "h-2",
   showLabel = false,
   label,

@@ -123,10 +123,10 @@ const HubNode = ({ data }) => {
   const { analysis, market } = data;
   return (
     <>
-      <div className="w-[440px] rounded-2xl relative overflow-hidden border border-[#7c75ff]/20 bg-[#0b0c10]">
+      <div className="w-[440px] rounded-2xl relative overflow-hidden border border-[#00E5A0]/20 bg-[#0b0c10]">
         {/* Crosshatch left strip */}
         <div
-          className="absolute left-0 top-0 w-5 h-full border-r border-[#7c75ff]/15 pointer-events-none"
+          className="absolute left-0 top-0 w-5 h-full border-r border-[#00E5A0]/15 pointer-events-none"
           style={{
             backgroundImage:
               "repeating-linear-gradient(315deg, rgba(124,117,255,0.12) 0, rgba(124,117,255,0.12) 1px, transparent 0, transparent 50%)",
@@ -328,7 +328,7 @@ const AgentNode = ({ data }) => {
                 disabled={voting}
                 className={`w-full relative rounded-xl overflow-hidden group py-3 flex items-center justify-center font-bold text-white tracking-wide text-[12px] transition-all cursor-pointer ${voting ? "opacity-50 cursor-not-allowed" : ""}`}
                 style={{
-                  background: "linear-gradient(135deg, #8a84ff 0%, #7c75ff 50%, #5b54e5 100%)",
+                  background: "linear-gradient(135deg, #00E5A0 0%, #00E5A0 50%, #00B87A 100%)",
                 }}
               >
                 {/* Sweep */}
@@ -374,7 +374,7 @@ const SectionNode = ({ data }) => (
       style={{ borderWidth: "1px", borderStyle: "solid" }}
     >
       <div className="w-full h-full p-5 flex flex-col relative">
-        <h4 className="text-[11px] font-bold text-[#7c75ff] mb-2.5 pb-2 border-b border-white/[0.04] tracking-[0.12em] uppercase flex items-center gap-1.5 shrink-0">
+        <h4 className="text-[11px] font-bold text-[#00E5A0] mb-2.5 pb-2 border-b border-white/[0.04] tracking-[0.12em] uppercase flex items-center gap-1.5 shrink-0">
           <RiSparklingLine className="text-sm" />
           {data.title}
         </h4>
@@ -540,7 +540,7 @@ const buildLayout = (analysis, responses, winner, handleVote, voting, voted, mar
       type: "smoothstep",
       animated: isWinnerNode,
       style: {
-        stroke: isWinnerNode ? "#f7c94b" : `${AGENT_MAP[agentId]?.avatarColor || "#7c75ff"}50`,
+        stroke: isWinnerNode ? "#f7c94b" : `${AGENT_MAP[agentId]?.avatarColor || "#00E5A0"}50`,
         strokeWidth: isWinnerNode ? 3 : 1.5,
       },
     });
@@ -907,7 +907,7 @@ export default function InfiniteComparisonPage({ params }) {
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: `Orkestri AI — ${analysis?.token}`,
+        title: `Synchestra AI — ${analysis?.token}`,
         url: window.location.href,
       });
     } else {
@@ -1025,7 +1025,7 @@ export default function InfiniteComparisonPage({ params }) {
           </button>
 
           {/* Status */}
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-[#0a0b12]/90 backdrop-blur-2xl border border-[#7c75ff]/20 text-[#7c75ff] text-[10px] font-bold tracking-[0.15em] uppercase">
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-[#0a0b12]/90 backdrop-blur-2xl border border-[#00E5A0]/20 text-[#00E5A0] text-[10px] font-bold tracking-[0.15em] uppercase">
             <RiCheckboxCircleLine />
             Online
           </div>

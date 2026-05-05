@@ -295,7 +295,7 @@ export async function GET(request) {
     const blockNumber = await directRPCCall('eth_blockNumber')
     return NextResponse.json({
       status: 'healthy',
-      system: 'Orkestri AI — OKAI Withdrawal Gateway',
+      system: 'Synchestra AI — SYNX Withdrawal Gateway',
       network: 'BSC Mainnet',
       chainId: 56,
       blockNumber: parseInt(blockNumber, 16),

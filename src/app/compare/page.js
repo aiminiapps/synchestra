@@ -61,7 +61,7 @@ function CoinSearchInput({ label, side, onSelect, selectedCoin }) {
     return () => document.removeEventListener("mousedown", handler);
   }, [setShow]);
 
-  const sideColor = side === "a" ? "#7c75ff" : "#f7c94b";
+  const sideColor = side === "a" ? "#00E5A0" : "#f7c94b";
 
   return (
     <div ref={ref} className="relative">
@@ -260,14 +260,14 @@ function ScoreBar({ coinA, coinB }) {
     <div className="flex items-center gap-3 mb-6">
       <div className="flex items-center gap-2 text-xs font-mono">
         {coinA.image && <img src={coinA.image} alt="" className="w-4 h-4 rounded-full" />}
-        <span className="text-[#7c75ff] font-bold">{winsA}</span>
+        <span className="text-[#00E5A0] font-bold">{winsA}</span>
       </div>
       <div className="flex-1 h-2 bg-white/[0.04] rounded-full overflow-hidden flex">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${pctA}%` }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-[#7c75ff] to-[#7c75ff]/60 rounded-l-full"
+          className="h-full bg-gradient-to-r from-[#00E5A0] to-[#00E5A0]/60 rounded-l-full"
         />
         <motion.div
           initial={{ width: 0 }}
@@ -416,8 +416,8 @@ export default function ComparePage() {
               {/* AI Analysis Panel */}
               <div className="rounded-2xl bg-[#0b0c12] border border-white/[0.06] overflow-hidden">
                 <div className="flex items-center gap-3 px-5 py-4 border-b border-white/[0.06]">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#7c75ff]/15 to-[#4a9eff]/10 border border-[#7c75ff]/25 flex items-center justify-center">
-                    <RiRobot2Line className="text-sm text-[#7c75ff]" />
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00E5A0]/15 to-[#2D7CF6]/10 border border-[#00E5A0]/25 flex items-center justify-center">
+                    <RiRobot2Line className="text-sm text-[#00E5A0]" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-bold">AI Comparison Analysis</h3>
@@ -436,7 +436,7 @@ export default function ComparePage() {
                   {aiLoading ? (
                     <div className="flex flex-col items-center justify-center py-16 gap-4">
                       <div className="relative">
-                        <div className="w-10 h-10 border-2 border-[#7c75ff]/20 border-t-[#7c75ff] rounded-full animate-spin" />
+                        <div className="w-10 h-10 border-2 border-[#00E5A0]/20 border-t-[#00E5A0] rounded-full animate-spin" />
                         <div className="absolute inset-0 w-10 h-10 border-2 border-transparent border-b-[#f7c94b]/30 rounded-full animate-spin" style={{ animationDirection: "reverse", animationDuration: "1.5s" }} />
                       </div>
                       <p className="text-[11px] text-white/25 font-mono uppercase tracking-[0.2em]">
@@ -464,7 +464,7 @@ export default function ComparePage() {
                       onClick={runAICompare}
                       className="w-full py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] text-[11px] font-medium text-white/30 hover:text-white/50 hover:bg-white/[0.04] transition-all cursor-pointer flex items-center justify-center gap-1.5 uppercase tracking-wider"
                     >
-                      <RiSparklingLine className="text-[#7c75ff]" />
+                      <RiSparklingLine className="text-[#00E5A0]" />
                       Re-analyze
                     </button>
                   </div>

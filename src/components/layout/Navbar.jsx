@@ -66,7 +66,7 @@ export default function Navbar() {
           className={cn(
             "max-w-5xl mx-auto rounded-2xl flex flex-col pointer-events-auto transition-all duration-500",
             isScrolled || mobileMenuOpen
-              ? "bg-[#0b0c12]/80 backdrop-blur-xl border border-white/[0.08] shadow-2xl shadow-black/50"
+              ? "bg-[#060B18]/80 backdrop-blur-xl border border-white/[0.08] shadow-2xl shadow-black/50"
               : "bg-transparent border border-transparent"
           )}
           initial={{ y: -20, opacity: 0 }}
@@ -76,7 +76,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-14 px-4 sm:px-5">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group">
-             <Image src="/logo.png" alt="Orkestri Logo" width={140} height={50} />
+             <Image src="/logo.png" alt="Synchestra Logo" width={140} height={50} />
             </Link>
 
             {/* Desktop Nav */}
@@ -101,7 +101,7 @@ export default function Navbar() {
                           : "text-white/50 group-hover:text-white"
                       )}
                     >
-                      <link.icon className={cn("text-[15px]", isActive ? "text-[#7c75ff]" : "")} />
+                      <link.icon className={cn("text-[15px]", isActive ? "text-[#00E5A0]" : "")} />
                       {link.label}
                     </span>
                     {isActive && (
@@ -137,8 +137,8 @@ export default function Navbar() {
                 className={cn(
                   "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer",
                   isConnected
-                    ? "bg-[#7c75ff]/10 border border-[#7c75ff]/20 text-[#7c75ff] hover:bg-[#7c75ff]/15"
-                    : "bg-gradient-to-r from-[#7c75ff] to-[#5b54e5] text-white hover:opacity-90 shadow-lg shadow-[#7c75ff]/20"
+                    ? "bg-[#00E5A0]/10 border border-[#00E5A0]/20 text-[#00E5A0] hover:bg-[#00E5A0]/15"
+                    : "bg-gradient-to-r from-[#00E5A0] to-[#00B87A] text-white hover:opacity-90 shadow-lg shadow-[#00E5A0]/20"
                 )}
               >
                 <RiWallet3Line className="text-base" />
@@ -169,7 +169,7 @@ export default function Navbar() {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="md:hidden overflow-hidden border-t border-white/[0.06] bg-[#0b0c12]/95 backdrop-blur-2xl rounded-b-2xl"
+                className="md:hidden overflow-hidden border-t border-white/[0.06] bg-[#060B18]/95 backdrop-blur-2xl rounded-b-2xl"
               >
                 <div className="flex flex-col p-4 gap-2">
                   {[...navLinks, { href: "/profile", label: "Profile", icon: RiUser3Line }].map((link, i) => {
@@ -198,7 +198,7 @@ export default function Navbar() {
                               : "text-white/60 hover:text-white hover:bg-white/[0.04]"
                           )}
                         >
-                          <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center", isActive ? "bg-[#7c75ff]/20 text-[#7c75ff]" : "bg-white/[0.04]")}>
+                          <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center", isActive ? "bg-[#00E5A0]/20 text-[#00E5A0]" : "bg-white/[0.04]")}>
                              <link.icon className="text-xl" />
                           </div>
                           {link.label}

@@ -167,7 +167,7 @@ export default function AgentPassportPage({ params }) {
                     ? `${(stats.avgResponseMs / 1000).toFixed(1)}s`
                     : "—",
                 icon: RiTimeLine,
-                color: "#7c75ff",
+                color: "#00E5A0",
               },
             ].map((stat, i) => (
               <GlassCard key={stat.label} className="text-center p-5">
@@ -189,7 +189,7 @@ export default function AgentPassportPage({ params }) {
           <motion.div variants={fadeUp} custom={2} className="mb-8">
             <GlassCard>
               <h3 className="text-sm font-semibold mb-4 flex items-center gap-2">
-                <RiBarChartBoxLine className="text-[#7c75ff]" />
+                <RiBarChartBoxLine className="text-[#00E5A0]" />
                 Performance Overview
               </h3>
               <div className="space-y-4">

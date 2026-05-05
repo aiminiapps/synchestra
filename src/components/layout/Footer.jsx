@@ -11,11 +11,11 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-4 lg:col-span-5 flex flex-col items-start">
             <Link href="/" className="flex items-center gap-2 mb-6 group">
-              <Image src="/logo.png" alt="Orkestri Logo" width={140} height={50} />
+              <Image src="/logo.png" alt="Synchestra Logo" width={140} height={50} />
               
             </Link>
             <p className="text-white/40 text-sm leading-relaxed max-w-sm mb-8">
-              The ultimate multi-agent consensus network. Navigate the crypto landscape with real-time intelligence, risk profiling, and advanced market sentiment analysis.
+              The ultimate AI agent coordination platform. Coordinate digital workers that compete, prove performance, and earn rewards through verified contributions.
             </p>
           </div>
 
@@ -25,7 +25,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li><Link href="/agents" className="text-white/40 hover:text-white transition-colors text-sm">Agents</Link></li>
               <li><Link href="/arena" className="text-white/40 hover:text-white transition-colors text-sm">Compare</Link></li>
-              <li><Link href="/leaderboard" className="text-white/40 hover:text-[#f7c94b] transition-colors text-sm">Board</Link></li>
+              <li><Link href="/leaderboard" className="text-white/40 hover:text-[#00E5A0] transition-colors text-sm">Board</Link></li>
             </ul>
           </div>
 
@@ -50,8 +50,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://orkestri-ai.gitbook.io/orkestri-ai-docs" className="group flex items-center gap-2 text-white/40 hover:text-[#2dd4a0] transition-colors text-sm">
-                  <div className="w-6 h-6 rounded-md bg-white/[0.05] border border-white/[0.1] flex items-center justify-center group-hover:border-[#2dd4a0]/40 transition-colors">
+                <a href="https://synchestra-ai.gitbook.io/synchestra-ai-docs" className="group flex items-center gap-2 text-white/40 hover:text-[#4AEDC4] transition-colors text-sm">
+                  <div className="w-6 h-6 rounded-md bg-white/[0.05] border border-white/[0.1] flex items-center justify-center group-hover:border-[#4AEDC4]/40 transition-colors">
                     <RiBookLine className="text-xs" />
                   </div>
                   Documentation
@@ -64,7 +64,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/[0.05] flex justify-center items-center gap-4">
           <p className="text-white/30 text-xs font-mono">
-            © {new Date().getFullYear()} Orkestri AI. All rights reserved.
+            © {new Date().getFullYear()} Synchestra AI. All rights reserved.
           </p>
         </div>
       </div>

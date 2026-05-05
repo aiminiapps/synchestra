@@ -192,7 +192,7 @@ export default function HistoryPage() {
                     onClick={() => fetchHistory(walletAddress, i + 1)}
                     className={`w-8 h-8 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                       pagination.page === i + 1
-                        ? "bg-[#7c75ff] text-white"
+                        ? "bg-[#00E5A0] text-white"
                         : "bg-white/[0.04] text-white/40 hover:bg-white/[0.08]"
                     }`}
                   >

@@ -22,12 +22,12 @@ const geoUrl = "/features.json";
 
 // Major hub coordinates for the network map
 const markers = [
-  { name: "New York", coordinates: [-74.006, 40.7128], color: "#7c75ff" },
-  { name: "London", coordinates: [-0.1276, 51.5072], color: "#2dd4a0" },
-  { name: "Tokyo", coordinates: [139.6917, 35.6895], color: "#f7c94b" },
-  { name: "Singapore", coordinates: [103.8198, 1.3521], color: "#7c75ff" },
-  { name: "Dubai", coordinates: [55.2708, 25.2048], color: "#2dd4a0" },
-  { name: "San Francisco", coordinates: [-122.4194, 37.7749], color: "#f7c94b" },
+  { name: "New York", coordinates: [-74.006, 40.7128], color: "#00E5A0" },
+  { name: "London", coordinates: [-0.1276, 51.5072], color: "#4AEDC4" },
+  { name: "Tokyo", coordinates: [139.6917, 35.6895], color: "#2D7CF6" },
+  { name: "Singapore", coordinates: [103.8198, 1.3521], color: "#00E5A0" },
+  { name: "Dubai", coordinates: [55.2708, 25.2048], color: "#4AEDC4" },
+  { name: "San Francisco", coordinates: [-122.4194, 37.7749], color: "#2D7CF6" },
 ];
 
 // Arcs connecting the hubs
@@ -43,9 +43,9 @@ const lines = [
 
 export default function AboutSection() {
   const stats = [
-    { value: "50K+", label: "Analyses Generated" },
-    { value: "3", label: "Specialized AI Models" },
-    { value: "100%", label: "Real-time Market Data" },
+    { value: "50K+", label: "Tasks Coordinated" },
+    { value: "3", label: "Specialized AI Agents" },
+    { value: "100%", label: "Verified Performance" },
   ];
 
   return (
@@ -66,7 +66,7 @@ export default function AboutSection() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] backdrop-blur-md">
                 <RiEarthLine className="text-white/60" />
                 <span className="text-xs font-semibold text-white/70 ">
-                  Global Intelligence Network
+                  Global Agent Coordination Network
                 </span>
               </div>
             </motion.div>
@@ -77,8 +77,8 @@ export default function AboutSection() {
               custom={1}
               className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6 text-white"
             >
-              Smart Investing with{" "}
-              <span className="text-[#7c75ff]">
+              Orchestrated Work with{" "}
+              <span className="text-[#00E5A0]">
                 Machine Precision
               </span>
             </motion.h2>
@@ -89,9 +89,9 @@ export default function AboutSection() {
               custom={2}
               className="text-white/50 text-base sm:text-lg max-w-xl leading-relaxed mb-12 font-light"
             >
-              Instead of relying on biased influencers, harness our autonomous network 
-              of AI agents. They instantly cross-examine token fundamentals, technical 
-              action, and market sentiment to give you total investment clarity.
+              Instead of relying on a single AI, harness our coordinated network 
+              of specialized agents. They compete through structured workflows, 
+              prove performance, and earn rewards — delivering verified, high-quality results.
             </motion.p>
 
             {/* Stats Area (Stacked exactly like the reference image) */}
@@ -135,13 +135,13 @@ export default function AboutSection() {
                     <circle cx="3.5" cy="3.5" r="1.5" fill="#5F718B" opacity="0.4" />
                   </pattern>
                   <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#7c75ff" stopOpacity="0" />
-                    <stop offset="50%" stopColor="#2dd4a0" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#7c75ff" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#00E5A0" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#4AEDC4" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#00E5A0" stopOpacity="0" />
                   </linearGradient>
                   <linearGradient id="arcGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#7c75ff" />
-                    <stop offset="100%" stopColor="#2dd4a0" />
+                    <stop offset="0%" stopColor="#00E5A0" />
+                    <stop offset="100%" stopColor="#2D7CF6" />
                   </linearGradient>
                 </defs>
 
@@ -202,12 +202,12 @@ export default function AboutSection() {
                     </text>
 
                     {/* Outer Ping Ring */}
-                    <circle r={10} fill="none" stroke="#e85d04" strokeWidth="1" className="animate-ping" style={{ animationDuration: "2s" }} />
-                    <circle r={10} fill="none" stroke="#e85d04" strokeWidth="2" opacity="0.8" />
+                    <circle r={10} fill="none" stroke="#00E5A0" strokeWidth="1" className="animate-ping" style={{ animationDuration: "2s" }} />
+                    <circle r={10} fill="none" stroke="#00E5A0" strokeWidth="2" opacity="0.8" />
                     
                     {/* Inner Graphic - Emulate Flag Style */}
-                    <circle r={7} fill="#1a202c" stroke="#e85d04" strokeWidth="1" />
-                    <circle r={3} fill="#a0aec0" />
+                    <circle r={7} fill="#0a0f1e" stroke="#00E5A0" strokeWidth="1" />
+                    <circle r={3} fill="#4AEDC4" />
                   </Marker>
                 ))}
               </ComposableMap>

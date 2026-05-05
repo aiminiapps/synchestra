@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-export default function LoadingSpinner({ color = "#7c75ff", size = "md", className }) {
+export default function LoadingSpinner({ color = "#00E5A0", size = "md", className }) {
   const sizes = {
     sm: "w-4 h-4",
     md: "w-6 h-6",

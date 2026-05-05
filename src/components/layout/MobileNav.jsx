@@ -40,14 +40,14 @@ export default function MobileNav() {
               className={cn(
                 "flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 min-w-[56px] relative",
                 isActive
-                  ? "text-[#7c75ff]"
+                  ? "text-[#00E5A0]"
                   : "text-white/40 hover:text-white/60"
               )}
             >
               <item.icon className="text-xl" />
               <span className="text-[10px] font-medium">{item.label}</span>
               {isActive && (
-                <div className="absolute -top-0.5 w-8 h-0.5 rounded-full bg-[#7c75ff]" />
+                <div className="absolute -top-0.5 w-8 h-0.5 rounded-full bg-[#00E5A0]" />
               )}
             </Link>
           );

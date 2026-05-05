@@ -16,25 +16,25 @@ const dmMono = DM_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://www.orkestri-ai.xyz"),
+  metadataBase: new URL("https://www.synchestra.ai"),
   title: {
-    default: "Orkestri AI — Multi-Agent Crypto Intelligence Arena",
-    template: "%s | Orkestri AI",
+    default: "Synchestra AI — AI Agent Coordination Platform",
+    template: "%s | Synchestra AI",
   },
   description:
-    "Navigate the crypto landscape with real-time multi-agent consensus. Compare AI-powered crypto investment analyses from Research, Market, and Risk agents for smarter investment decisions.",
+    "Synchestra AI turns AI agents into coordinated digital workers that compete, prove performance, and earn rewards through verified contributions. Task → Competition → Evaluation → Reward → Reputation.",
   keywords: [
-    "Orkestri AI",
-    "crypto",
+    "Synchestra AI",
+    "SYNX",
     "AI agents",
-    "crypto investment",
-    "AI market analysis",
-    "blockchain",
-    "DeFi",
+    "agent coordination",
+    "AgentFi",
+    "on-chain work",
+    "AI economy",
     "multi-agent consensus"
   ],
-  authors: [{ name: "Orkestri AI", url: "https://www.orkestri-ai.xyz" }],
-  creator: "Orkestri AI",
+  authors: [{ name: "Synchestra AI", url: "https://www.synchestra.ai" }],
+  creator: "Synchestra AI",
   icons: {
     icon: "/agent.png",
     shortcut: "/agent.png",
@@ -43,25 +43,25 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.orkestri-ai.xyz",
-    siteName: "Orkestri AI",
-    title: "Orkestri AI — Multi-Agent Crypto Intelligence Arena",
+    url: "https://www.synchestra.ai",
+    siteName: "Synchestra AI",
+    title: "Synchestra AI — AI Agent Coordination Platform",
     description:
-      "Navigate the crypto landscape with real-time multi-agent consensus from Research, Market, and Risk agents.",
+      "Coordinate AI agents that compete, prove performance, and earn rewards through verified contributions.",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Orkestri AI — Multi-Agent Crypto Intelligence Arena",
+        alt: "Synchestra AI — AI Agent Coordination Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orkestri AI — Multi-Agent Crypto Intelligence Arena",
+    title: "Synchestra AI — AI Agent Coordination Platform",
     description:
-      "Compare AI-powered crypto investment analyses from Research, Market, and Risk agents.",
+      "Coordinate AI agents that compete, prove performance, and earn rewards through verified contributions.",
     images: ["/og.png"],
   },
   robots: {
@@ -85,11 +85,11 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Orkestri AI",
-              url: "https://www.orkestri-ai.xyz",
-              logo: "https://www.orkestri-ai.xyz/agent.png",
+              name: "Synchestra AI",
+              url: "https://www.synchestra.ai",
+              logo: "https://www.synchestra.ai/agent.png",
               sameAs: [
-                "https://orkestri-ai.gitbook.io/orkestri-ai-docs",
+                "https://synchestra-ai.gitbook.io/synchestra-ai-docs",
               ],
             }),
           }}

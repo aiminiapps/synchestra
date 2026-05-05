@@ -35,7 +35,7 @@ function SeedAvatar({ address, size = 80 }) {
 
   return (
     <div 
-      className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#7c75ff]/20 to-[#4a9eff]/10 border border-[#7c75ff]/20 flex-shrink-0"
+      className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#00E5A0]/20 to-[#2D7CF6]/10 border border-[#00E5A0]/20 flex-shrink-0"
       style={{ width: size, height: size }}
     >
       <img
@@ -61,9 +61,9 @@ const fadeUp = {
 /* ─── Reward Log Item ─── */
 function RewardLogItem({ log }) {
   const icons = {
-    analysis: <RiSwordLine className="text-[#7c75ff]" />,
-    vote: <RiCheckboxCircleLine className="text-[#4a9eff]" />,
-    compare: <RiArrowLeftRightLine className="text-[#2dd4a0]" />,
+    analysis: <RiSwordLine className="text-[#00E5A0]" />,
+    vote: <RiCheckboxCircleLine className="text-[#2D7CF6]" />,
+    compare: <RiArrowLeftRightLine className="text-[#4AEDC4]" />,
   };
   const labels = {
     analysis: "Analysis Reward",
@@ -89,7 +89,7 @@ function RewardLogItem({ log }) {
           })}
         </p>
       </div>
-      <span className="text-xs font-bold font-mono text-[#2dd4a0]">
+      <span className="text-xs font-bold font-mono text-[#4AEDC4]">
         +{log.amount} OKAI
       </span>
     </div>
@@ -135,7 +135,7 @@ export default function ProfilePage() {
       
       const nonce = crypto.randomUUID();
       const expiry = Math.floor(Date.now() / 1000) + 300; // 5 min
-      const message = `Orkestri AI Withdrawal\nAmount: ${amt} OKAI\nWallet: ${address}\nNonce: ${nonce}\nExpiry: ${expiry}`;
+      const message = `Synchestra AI Withdrawal\nAmount: ${amt} SYNX\nWallet: ${address}\nNonce: ${nonce}\nExpiry: ${expiry}`;
 
       const walletClient = createWalletClient({
         chain: bsc,
@@ -201,8 +201,8 @@ export default function ProfilePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-20 h-20 rounded-2xl bg-[#7c75ff]/10 border border-[#7c75ff]/20 flex items-center justify-center mx-auto mb-6">
-              <RiWallet3Line className="text-3xl text-[#7c75ff]" />
+            <div className="w-20 h-20 rounded-2xl bg-[#00E5A0]/10 border border-[#00E5A0]/20 flex items-center justify-center mx-auto mb-6">
+              <RiWallet3Line className="text-3xl text-[#00E5A0]" />
             </div>
             <h1 className="text-2xl font-bold mb-3 tracking-tight">Connect Your Wallet</h1>
             <p className="text-white/35 text-sm leading-relaxed mb-8 max-w-sm mx-auto font-light">
@@ -211,7 +211,7 @@ export default function ProfilePage() {
             </p>
             <button
               onClick={() => open()}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#7c75ff] to-[#5b54e5] text-white font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#00E5A0] to-[#00B87A] text-white font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer"
             >
               <RiWallet3Line />
               Connect Wallet
@@ -220,13 +220,13 @@ export default function ProfilePage() {
             {/* Reward rate cards */}
             <div className="grid grid-cols-3 gap-3 mt-12">
               {[
-                { action: "Analysis", amount: 30, icon: RiSwordLine, color: "#7c75ff" },
-                { action: "Compare", amount: 20, icon: RiArrowLeftRightLine, color: "#2dd4a0" },
-                { action: "Vote", amount: 10, icon: RiCheckboxCircleLine, color: "#4a9eff" },
+                { action: "Analysis", amount: 30, icon: RiSwordLine, color: "#00E5A0" },
+                { action: "Compare", amount: 20, icon: RiArrowLeftRightLine, color: "#4AEDC4" },
+                { action: "Vote", amount: 10, icon: RiCheckboxCircleLine, color: "#2D7CF6" },
               ].map((r) => (
                 <div
                   key={r.action}
-                  className="rounded-xl bg-[#0b0c12] border border-white/[0.06] p-4"
+                  className="rounded-xl bg-[#060B18] border border-white/[0.06] p-4"
                 >
                   <r.icon className="text-lg mb-2 mx-auto" style={{ color: r.color }} />
                   <p className="text-sm font-bold font-mono">{r.amount}</p>
@@ -254,7 +254,7 @@ export default function ProfilePage() {
           <motion.div
             variants={fadeUp}
             custom={0}
-            className="rounded-[32px] bg-[#0b0c12] border border-white/[0.06] overflow-hidden mb-6 relative group"
+            className="rounded-[32px] bg-[#060B18] border border-white/[0.06] overflow-hidden mb-6 relative group"
           >
             {/* Cinematic Background */}
             <div className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none" 
@@ -282,7 +282,7 @@ export default function ProfilePage() {
                       className="text-white/25 hover:text-white/50 transition-colors cursor-pointer"
                     >
                       {copied ? (
-                        <RiCheckLine className="text-[#2dd4a0]" />
+                        <RiCheckLine className="text-[#4AEDC4]" />
                       ) : (
                         <RiFileCopyLine />
                       )}
@@ -316,13 +316,13 @@ export default function ProfilePage() {
           <motion.div
             variants={fadeUp}
             custom={1}
-            className="rounded-[32px] bg-[#0b0c12] border border-[#7c75ff]/20 overflow-hidden mb-6 relative group"
+            className="rounded-[32px] bg-[#060B18] border border-[#00E5A0]/20 overflow-hidden mb-6 relative group"
           >
             {/* Cinematic Noise & Glow Effects */}
             <div className="absolute inset-0 opacity-[0.05] group-hover:opacity-[0.1] transition-opacity duration-700 pointer-events-none" 
                  style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
             <div className="absolute top-[50%] left-[85%] -translate-x-1/2 -translate-y-1/2 w-64 h-64 pointer-events-none">
-               <div className="absolute inset-0 blur-[80px] scale-[1.5] transition-opacity duration-700 opacity-20 group-hover:opacity-40 bg-[#7c75ff]" />
+               <div className="absolute inset-0 blur-[80px] scale-[1.5] transition-opacity duration-700 opacity-20 group-hover:opacity-40 bg-[#00E5A0]" />
             </div>
             <svg className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none mix-blend-overlay z-10">
               <rect width="100%" height="100%" filter="url(#cinematicNoiseProfile)" />
@@ -335,16 +335,16 @@ export default function ProfilePage() {
                     OKAI Balance
                   </p>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-extrabold font-mono text-[#7c75ff]">
+                    <span className="text-4xl font-extrabold font-mono text-[#00E5A0]">
                       {rewards?.balance?.toLocaleString() || "0"}
                     </span>
-                    <span className="text-sm text-[#7c75ff]/50 font-bold">OKAI</span>
+                    <span className="text-sm text-[#00E5A0]/50 font-bold">OKAI</span>
                   </div>
                 </div>
                 <button
                   onClick={() => { setShowWithdraw(true); setWithdrawResult(null); setWithdrawError(""); }}
                   disabled={(rewards?.balance || 0) < 10}
-                  className="px-5 py-2.5 rounded-xl bg-[#2dd4a0]/10 border border-[#2dd4a0]/25 text-[#2dd4a0] text-xs font-semibold hover:bg-[#2dd4a0]/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#4AEDC4]/10 border border-[#4AEDC4]/25 text-[#4AEDC4] text-xs font-semibold hover:bg-[#4AEDC4]/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer"
                 >
                   <RiSendPlaneLine /> Withdraw
                 </button>
@@ -353,9 +353,9 @@ export default function ProfilePage() {
               {/* Earnings breakdown */}
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: "Analyses", count: rewards?.analysisCount || 0, icon: RiSwordLine, color: "#7c75ff" },
-                  { label: "Compares", count: rewards?.compareCount || 0, icon: RiArrowLeftRightLine, color: "#2dd4a0" },
-                  { label: "Votes", count: rewards?.voteCount || 0, icon: RiCheckboxCircleLine, color: "#4a9eff" },
+                  { label: "Analyses", count: rewards?.analysisCount || 0, icon: RiSwordLine, color: "#00E5A0" },
+                  { label: "Compares", count: rewards?.compareCount || 0, icon: RiArrowLeftRightLine, color: "#4AEDC4" },
+                  { label: "Votes", count: rewards?.voteCount || 0, icon: RiCheckboxCircleLine, color: "#2D7CF6" },
                 ].map((stat) => (
                   <div key={stat.label} className="rounded-xl bg-white/[0.02] border border-white/[0.04] p-3.5">
                     <stat.icon className="text-sm mb-2" style={{ color: stat.color }} />
@@ -381,7 +381,7 @@ export default function ProfilePage() {
                   initial={{ opacity: 0, scale: 0.95, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                  className="bg-[#0b0c12] border border-white/[0.08] rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+                  className="bg-[#060B18] border border-white/[0.08] rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Header */}
@@ -398,8 +398,8 @@ export default function ProfilePage() {
                   {/* Success State */}
                   {withdrawResult ? (
                     <div className="p-6 text-center">
-                      <div className="w-14 h-14 rounded-full bg-[#2dd4a0]/10 border border-[#2dd4a0]/20 flex items-center justify-center mx-auto mb-4">
-                        <RiCheckLine className="text-2xl text-[#2dd4a0]" />
+                      <div className="w-14 h-14 rounded-full bg-[#4AEDC4]/10 border border-[#4AEDC4]/20 flex items-center justify-center mx-auto mb-4">
+                        <RiCheckLine className="text-2xl text-[#4AEDC4]" />
                       </div>
                       <p className="text-white font-bold text-lg mb-1">Withdrawal {withdrawResult.status === "pending" ? "Submitted" : "Confirmed"}</p>
                       <p className="text-white/40 text-sm mb-4">{withdrawResult.amount} OKAI sent to your wallet</p>
@@ -426,7 +426,7 @@ export default function ProfilePage() {
                           <label className="text-xs font-semibold text-white/60">Amount</label>
                           <button
                             onClick={() => setWithdrawAmount(String(rewards?.balance || 0))}
-                            className="text-[10px] text-[#2dd4a0] font-semibold hover:underline cursor-pointer"
+                            className="text-[10px] text-[#4AEDC4] font-semibold hover:underline cursor-pointer"
                           >
                             MAX: {rewards?.balance || 0} OKAI
                           </button>
@@ -439,7 +439,7 @@ export default function ProfilePage() {
                             value={withdrawAmount}
                             onChange={(e) => { setWithdrawAmount(e.target.value); setWithdrawError(""); }}
                             placeholder="Enter amount (min 10)"
-                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-sm text-white font-mono placeholder:text-white/20 outline-none focus:border-[#7c75ff]/40 transition-colors"
+                            className="w-full px-4 py-3 bg-white/[0.03] border border-white/[0.08] rounded-xl text-sm text-white font-mono placeholder:text-white/20 outline-none focus:border-[#00E5A0]/40 transition-colors"
                             disabled={withdrawing}
                           />
                           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/25 font-bold">OKAI</span>
@@ -447,7 +447,7 @@ export default function ProfilePage() {
                       </div>
 
                       <div className="flex items-start gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                        <RiShieldCheckLine className="text-[#2dd4a0] text-sm mt-0.5 shrink-0" />
+                        <RiShieldCheckLine className="text-[#4AEDC4] text-sm mt-0.5 shrink-0" />
                         <p className="text-[11px] text-white/30 leading-relaxed">
                           You will sign a message to verify ownership. OKAI tokens are sent as BEP-20 on BSC Mainnet directly to your connected wallet.
                         </p>
@@ -470,7 +470,7 @@ export default function ProfilePage() {
                         <div 
                           className="w-full h-full rounded-xl py-3 flex items-center justify-center font-bold text-sm text-white tracking-wide transition-all duration-500 relative z-10"
                           style={{
-                            background: 'linear-gradient(135deg, #8a84ff 0%, #7c75ff 50%, #5b54e5 100%)'
+                            background: 'linear-gradient(135deg, #8a84ff 0%, #00E5A0 50%, #00B87A 100%)'
                           }}
                         >
                           {/* Noise overlay */}
@@ -505,7 +505,7 @@ export default function ProfilePage() {
 
           {/* ─── Tabs ─── */}
           <motion.div variants={fadeUp} custom={2}>
-            <div className="flex items-center gap-1 mb-4 bg-[#0b0c12] rounded-xl p-1 border border-white/[0.06]">
+            <div className="flex items-center gap-1 mb-4 bg-[#060B18] rounded-xl p-1 border border-white/[0.06]">
               {[
                 { key: "activity", label: "History", icon: RiHistoryLine },
                 { key: "rewards", label: "Rewards Log", icon: RiSparklingLine },
@@ -535,18 +535,18 @@ export default function ProfilePage() {
                   exit={{ opacity: 0, y: -5 }}
                 >
                   {loading ? (
-                    <div className="rounded-2xl bg-[#0b0c12] border border-white/[0.06] p-12 text-center">
+                    <div className="rounded-2xl bg-[#060B18] border border-white/[0.06] p-12 text-center">
                       <div className="w-5 h-5 border-2 border-white/10 border-t-white/40 rounded-full animate-spin mx-auto" />
                     </div>
                   ) : analyses.length === 0 ? (
-                    <div className="rounded-2xl bg-[#0b0c12] border border-white/[0.06] p-12 text-center">
+                    <div className="rounded-2xl bg-[#060B18] border border-white/[0.06] p-12 text-center">
                       <RiSwordLine className="text-2xl text-white/10 mx-auto mb-3" />
                       <p className="text-white/25 text-sm mb-4">
                         No analyses yet
                       </p>
                       <Link
                         href="/arena"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#7c75ff]/10 border border-[#7c75ff]/20 text-[#7c75ff] text-sm font-medium hover:bg-[#7c75ff]/15 transition-colors"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#00E5A0]/10 border border-[#00E5A0]/20 text-[#00E5A0] text-sm font-medium hover:bg-[#00E5A0]/15 transition-colors"
                       >
                         Start First Analysis
                         <RiArrowRightLine />
@@ -562,9 +562,9 @@ export default function ProfilePage() {
                           transition={{ delay: i * 0.04 }}
                         >
                           <Link href={`/arena/${analysis.id}`}>
-                            <div className="flex items-center gap-4 p-4 rounded-xl bg-[#0b0c12] border border-white/[0.06] hover:border-white/[0.1] transition-colors cursor-pointer group">
+                            <div className="flex items-center gap-4 p-4 rounded-xl bg-[#060B18] border border-white/[0.06] hover:border-white/[0.1] transition-colors cursor-pointer group">
                               <div className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.05] flex items-center justify-center shrink-0">
-                                <RiCoinLine className="text-[#2dd4a0] text-sm" />
+                                <RiCoinLine className="text-[#4AEDC4] text-sm" />
                               </div>
                               <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium truncate">
@@ -574,7 +574,7 @@ export default function ProfilePage() {
                                   {analysis.question}
                                 </p>
                               </div>
-                              <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-[#2dd4a0]/50">
+                              <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-[#4AEDC4]/50">
                                 +30 OKAI
                               </div>
                               <RiArrowRightLine className="text-white/10 group-hover:text-white/25 transition-colors shrink-0" />
@@ -603,7 +603,7 @@ export default function ProfilePage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                 >
-                  <div className="rounded-2xl bg-[#0b0c12] border border-white/[0.06] overflow-hidden">
+                  <div className="rounded-2xl bg-[#060B18] border border-white/[0.06] overflow-hidden">
                     {rewards?.recentLogs?.length > 0 ? (
                       <div className="divide-y divide-white/[0.03] px-4">
                         {rewards.recentLogs.map((log) => (

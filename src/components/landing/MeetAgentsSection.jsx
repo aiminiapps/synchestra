@@ -48,7 +48,7 @@ export default function MeetAgentsSection() {
             </p>
             <Link 
               href="/arena" 
-              className="flex items-center gap-2 text-white font-medium hover:text-[#7c75ff] transition-colors group text-sm uppercase tracking-widest"
+              className="flex items-center gap-2 text-white font-medium hover:text-[#00E5A0] transition-colors group text-sm uppercase tracking-widest"
             >
               Meet The Agents
               <RiArrowRightLine className="group-hover:translate-x-1 transition-transform" />
@@ -70,7 +70,7 @@ export default function MeetAgentsSection() {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
               >
                 <Link href={`/agents/${agent.slug}`} className="block h-full">
-                  <div className="relative h-[420px] rounded-[32px] transition-all duration-500 cursor-pointer overflow-hidden group bg-[#0b0c12] border border-white/[0.05] hover:border-white/[0.1] hover:shadow-2xl hover:-translate-y-2">
+                  <div className="relative h-[420px] rounded-[32px] transition-all duration-500 cursor-pointer overflow-hidden group bg-[#060B18] border border-white/[0.05] hover:border-white/[0.1] hover:shadow-2xl hover:-translate-y-2">
                     {/* Faint Dot Grid */}
                     <div className="absolute inset-0 opacity-[0.05] group-hover:opacity-[0.1] transition-opacity duration-700" 
                          style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
@@ -104,7 +104,7 @@ export default function MeetAgentsSection() {
 
                     {/* Glass Icon Box */}
                     <div className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                      <div className="relative w-24 h-24 rounded-3xl flex items-center justify-center border bg-[#0b0c12]/60 backdrop-blur-xl transition-all duration-500 group-hover:scale-105"
+                      <div className="relative w-24 h-24 rounded-3xl flex items-center justify-center border bg-[#060B18]/60 backdrop-blur-xl transition-all duration-500 group-hover:scale-105"
                            style={{ 
                              borderColor: `${agent.avatarColor}40`,
                              boxShadow: `inset 0 0 30px ${agent.avatarColor}10, 0 10px 40px ${agent.avatarColor}30`

@@ -73,8 +73,8 @@ Format rules:
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "https://orkestri.ai",
-          "X-Title": "Orkestri AI Compare",
+          "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "https://synchestra.ai",
+          "X-Title": "Synchestra AI Compare",
         },
         body: JSON.stringify({
           model: "meta-llama/llama-3.3-70b-instruct",

@@ -12,8 +12,8 @@ export default function GradientButton({
 }) {
   const variants = {
     primary:
-      "bg-gradient-to-r from-[#7c75ff] to-[#4a9eff] text-white hover:opacity-90 shadow-lg shadow-[#7c75ff]/20",
-    gold: "bg-gradient-to-r from-[#f7c94b] to-[#ffad3b] text-[#080a12] hover:opacity-90 shadow-lg shadow-[#f7c94b]/20",
+      "bg-gradient-to-r from-[#00E5A0] to-[#2D7CF6] text-[#060B18] hover:opacity-90 shadow-lg shadow-[#00E5A0]/20",
+    gold: "bg-gradient-to-r from-[#00E5A0] to-[#4AEDC4] text-[#060B18] hover:opacity-90 shadow-lg shadow-[#00E5A0]/20",
     outline:
       "bg-transparent border border-white/10 text-white hover:border-white/20 hover:bg-white/[0.04]",
     ghost: "bg-transparent text-white/70 hover:text-white hover:bg-white/[0.04]",
