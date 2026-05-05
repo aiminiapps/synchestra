@@ -61,36 +61,36 @@ function CoinSearchInput({ label, side, onSelect, selectedCoin }) {
     return () => document.removeEventListener("mousedown", handler);
   }, [setShow]);
 
-  const sideColor = side === "a" ? "#00E5A0" : "#f7c94b";
+  const sideColor = side === "a" ? "#00E5A0" : "#2D7CF6";
 
   return (
     <div ref={ref} className="relative">
       <label
-        className="text-[10px] uppercase tracking-[0.2em] font-semibold mb-2 block"
-        style={{ color: `${sideColor}80` }}
+        className="text-[10px] uppercase tracking-widest font-semibold mb-3 block"
+        style={{ color: `${sideColor}90` }}
       >
         {label}
       </label>
       {selectedCoin ? (
         <div
-          className="flex items-center gap-3 p-3.5 rounded-xl border bg-[#0b0c12]"
-          style={{ borderColor: `${sideColor}25` }}
+          className="flex items-center gap-4 p-4 rounded-[20px] border bg-[#060B18]/60 backdrop-blur-xl shadow-xl"
+          style={{ borderColor: `${sideColor}30` }}
         >
           {selectedCoin.image && (
-            <img src={selectedCoin.image} alt="" className="w-7 h-7 rounded-full" />
+            <img src={selectedCoin.image} alt="" className="w-8 h-8 rounded-full border border-white/10" />
           )}
           <div className="flex-1">
-            <p className="text-sm font-semibold">{selectedCoin.name}</p>
-            <p className="text-[10px] font-mono text-white/30">
+            <p className="text-[15px] font-medium text-white/90">{selectedCoin.name}</p>
+            <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mt-0.5">
               {selectedCoin.symbol}
-              {selectedCoin.rank ? ` · #${selectedCoin.rank}` : ""}
+              {selectedCoin.rank ? ` · Rank ${selectedCoin.rank}` : ""}
             </p>
           </div>
           <button
             onClick={() => onSelect(null)}
-            className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/30 hover:text-white/60 cursor-pointer transition-colors"
+            className="w-8 h-8 rounded-xl bg-white/[0.02] border border-white/[0.04] flex items-center justify-center text-white/40 hover:text-white/80 hover:bg-white/[0.05] cursor-pointer transition-colors"
           >
-            <RiCloseLine className="text-xs" />
+            <RiCloseLine className="text-base" />
           </button>
         </div>
       ) : (
@@ -100,7 +100,7 @@ function CoinSearchInput({ label, side, onSelect, selectedCoin }) {
             placeholder="Search token..."
             value={query}
             onChange={(e) => search(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-white/[0.02] border border-white/[0.06] text-white placeholder-white/20 focus:outline-none text-sm transition-all"
+            className="w-full px-4 py-4 rounded-[20px] bg-white/[0.02] border border-white/[0.04] text-white placeholder-white/30 focus:outline-none focus:border-white/[0.1] text-[13px] font-light transition-all shadow-inner"
             onFocus={() => setShow(true)}
           />
           <AnimatePresence>
@@ -109,7 +109,7 @@ function CoinSearchInput({ label, side, onSelect, selectedCoin }) {
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
-                className="absolute z-50 w-full mt-1 bg-[#0d0f1a] border border-white/10 rounded-xl overflow-hidden py-1"
+                className="absolute z-50 w-full mt-2 bg-[#060B18]/95 backdrop-blur-2xl border border-white/[0.06] rounded-[20px] overflow-hidden py-2 shadow-2xl"
               >
                 {searching ? (
                   <li className="px-4 py-3 text-xs text-white/30 text-center animate-pulse">
@@ -211,20 +211,20 @@ function CompareMetric({ label, valueA, valueB, format = "default", icon: Icon }
   const winB = numA != null && numB != null ? numB > numA : false;
 
   return (
-    <div className="flex items-center gap-3 py-3 border-b border-white/[0.03] last:border-0">
+    <div className="flex items-center gap-3 py-3.5 border-b border-white/[0.04] last:border-0">
       <div className="flex-1 text-right">
-        <p className={`text-sm font-mono ${colorA} ${winA ? "font-bold" : "text-white/60"}`}>
+        <p className={`text-[13px] font-mono ${colorA} ${winA ? "font-bold" : "text-white/60 font-medium"}`}>
           {fmt(valueA)}
         </p>
       </div>
       <div className="w-28 sm:w-36 text-center shrink-0">
-        <div className="flex items-center justify-center gap-1.5 text-[10px] text-white/30 uppercase tracking-wider font-medium">
-          {Icon && <Icon className="text-xs" />}
+        <div className="flex items-center justify-center gap-1.5 text-[9px] text-white/40 uppercase tracking-[0.15em] font-semibold">
+          {Icon && <Icon className="text-sm text-white/30" />}
           {label}
         </div>
       </div>
       <div className="flex-1 text-left">
-        <p className={`text-sm font-mono ${colorB} ${winB ? "font-bold" : "text-white/60"}`}>
+        <p className={`text-[13px] font-mono ${colorB} ${winB ? "font-bold" : "text-white/60 font-medium"}`}>
           {fmt(valueB)}
         </p>
       </div>
@@ -257,28 +257,28 @@ function ScoreBar({ coinA, coinB }) {
   const pctB = 100 - pctA;
 
   return (
-    <div className="flex items-center gap-3 mb-6">
-      <div className="flex items-center gap-2 text-xs font-mono">
-        {coinA.image && <img src={coinA.image} alt="" className="w-4 h-4 rounded-full" />}
-        <span className="text-[#00E5A0] font-bold">{winsA}</span>
+    <div className="flex items-center gap-4 mb-8">
+      <div className="flex items-center gap-2.5 text-xs font-mono">
+        {coinA.image && <img src={coinA.image} alt="" className="w-5 h-5 rounded-full border border-[#00E5A0]/30" />}
+        <span className="text-[#00E5A0] font-bold text-sm">{winsA}</span>
       </div>
-      <div className="flex-1 h-2 bg-white/[0.04] rounded-full overflow-hidden flex">
+      <div className="flex-1 h-2.5 bg-white/[0.02] border border-white/[0.04] rounded-full overflow-hidden flex">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${pctA}%` }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-[#00E5A0] to-[#00E5A0]/60 rounded-l-full"
+          className="h-full bg-gradient-to-r from-[#00E5A0]/80 to-[#00E5A0] rounded-l-full shadow-[0_0_10px_rgba(0,229,160,0.5)]"
         />
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${pctB}%` }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-          className="h-full bg-gradient-to-l from-[#f7c94b] to-[#f7c94b]/60 rounded-r-full"
+          className="h-full bg-gradient-to-l from-[#2D7CF6]/80 to-[#2D7CF6] rounded-r-full shadow-[0_0_10px_rgba(45,124,246,0.5)]"
         />
       </div>
-      <div className="flex items-center gap-2 text-xs font-mono">
-        <span className="text-[#f7c94b] font-bold">{winsB}</span>
-        {coinB.image && <img src={coinB.image} alt="" className="w-4 h-4 rounded-full" />}
+      <div className="flex items-center gap-2.5 text-xs font-mono">
+        <span className="text-[#2D7CF6] font-bold text-sm">{winsB}</span>
+        {coinB.image && <img src={coinB.image} alt="" className="w-5 h-5 rounded-full border border-[#2D7CF6]/30" />}
       </div>
     </div>
   );
@@ -344,12 +344,12 @@ export default function ComparePage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-10"
         >
-          <h1 className="text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
-            Compare <span className="text-gradient">Tokens</span>
+          <h1 className="text-3xl sm:text-4xl font-medium mb-3 tracking-tight text-white/90">
+            Compare <span className="font-semibold text-[#00E5A0]">Tokens</span>
           </h1>
-          <p className="text-white/30 text-sm font-light">
+          <p className="text-white/40 text-[15px] font-light max-w-lg mx-auto">
             Side-by-side market data and AI-powered investment comparison
           </p>
         </motion.div>
@@ -377,23 +377,23 @@ export default function ComparePage() {
               <ScoreBar coinA={coinA} coinB={coinB} />
 
               {/* Comparison Table */}
-              <div className="rounded-2xl bg-[#0b0c12] border border-white/[0.06] overflow-hidden">
+              <div className="rounded-[24px] bg-[#060B18]/60 backdrop-blur-xl border border-white/[0.04] shadow-2xl overflow-hidden">
                 {/* Header row */}
-                <div className="flex items-center gap-3 p-4 sm:p-5 border-b border-white/[0.06]">
-                  <div className="flex-1 flex items-center gap-2 justify-end">
+                <div className="flex items-center gap-3 p-5 sm:p-6 border-b border-white/[0.04] bg-white/[0.01]">
+                  <div className="flex-1 flex items-center gap-3 justify-end">
                     {coinA.image && (
-                      <img src={coinA.image} alt="" className="w-6 h-6 rounded-full" />
+                      <img src={coinA.image} alt="" className="w-8 h-8 rounded-full border border-white/10" />
                     )}
-                    <span className="text-sm font-bold">{coinA.symbol}</span>
+                    <span className="text-base font-medium text-white/90 tracking-wide">{coinA.symbol}</span>
                   </div>
                   <div className="w-28 sm:w-36 text-center shrink-0">
-                    <RiArrowLeftRightLine className="text-white/15 mx-auto text-lg" />
+                    <RiArrowLeftRightLine className="text-white/20 mx-auto text-xl" />
                   </div>
-                  <div className="flex-1 flex items-center gap-2">
+                  <div className="flex-1 flex items-center gap-3">
                     {coinB.image && (
-                      <img src={coinB.image} alt="" className="w-6 h-6 rounded-full" />
+                      <img src={coinB.image} alt="" className="w-8 h-8 rounded-full border border-white/10" />
                     )}
-                    <span className="text-sm font-bold">{coinB.symbol}</span>
+                    <span className="text-base font-medium text-white/90 tracking-wide">{coinB.symbol}</span>
                   </div>
                 </div>
 
@@ -414,32 +414,32 @@ export default function ComparePage() {
               </div>
 
               {/* AI Analysis Panel */}
-              <div className="rounded-2xl bg-[#0b0c12] border border-white/[0.06] overflow-hidden">
-                <div className="flex items-center gap-3 px-5 py-4 border-b border-white/[0.06]">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00E5A0]/15 to-[#2D7CF6]/10 border border-[#00E5A0]/25 flex items-center justify-center">
-                    <RiRobot2Line className="text-sm text-[#00E5A0]" />
+              <div className="rounded-[24px] bg-[#060B18]/60 backdrop-blur-xl border border-white/[0.04] shadow-2xl overflow-hidden">
+                <div className="flex items-center gap-4 px-6 py-5 border-b border-white/[0.04] bg-white/[0.01]">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00E5A0]/15 to-[#2D7CF6]/10 border border-[#00E5A0]/20 flex items-center justify-center">
+                    <RiRobot2Line className="text-base text-[#00E5A0]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-bold">AI Comparison Analysis</h3>
-                    <p className="text-[9px] text-white/25 font-mono uppercase tracking-[0.15em]">
+                    <h3 className="text-base font-medium text-white/90">AI Comparison Analysis</h3>
+                    <p className="text-[10px] text-white/40 font-mono uppercase tracking-widest mt-0.5">
                       {coinA.symbol} vs {coinB.symbol}
                     </p>
                   </div>
                   {reward && (
-                    <span className="text-[10px] font-bold font-mono text-[#f7c94b] bg-[#f7c94b]/10 px-2.5 py-1 rounded-md border border-[#f7c94b]/20">
-                      +{reward.earned} OKAI
+                    <span className="text-[10px] font-bold font-mono text-[#00E5A0] bg-[#00E5A0]/10 px-3 py-1.5 rounded-full border border-[#00E5A0]/20 shadow-[0_0_15px_rgba(0,229,160,0.1)] tracking-widest">
+                      +{reward.earned} SYNX
                     </span>
                   )}
                 </div>
 
                 <div className="p-5">
                   {aiLoading ? (
-                    <div className="flex flex-col items-center justify-center py-16 gap-4">
+                    <div className="flex flex-col items-center justify-center py-16 gap-5">
                       <div className="relative">
-                        <div className="w-10 h-10 border-2 border-[#00E5A0]/20 border-t-[#00E5A0] rounded-full animate-spin" />
-                        <div className="absolute inset-0 w-10 h-10 border-2 border-transparent border-b-[#f7c94b]/30 rounded-full animate-spin" style={{ animationDirection: "reverse", animationDuration: "1.5s" }} />
+                        <div className="w-12 h-12 border-2 border-white/10 border-t-[#00E5A0] rounded-full animate-spin" />
+                        <div className="absolute inset-0 w-12 h-12 border-2 border-transparent border-b-[#2D7CF6] rounded-full animate-spin" style={{ animationDirection: "reverse", animationDuration: "1.5s" }} />
                       </div>
-                      <p className="text-[11px] text-white/25 font-mono uppercase tracking-[0.2em]">
+                      <p className="text-[11px] text-white/30 font-mono uppercase tracking-[0.2em]">
                         Analyzing {coinA.symbol} vs {coinB.symbol}...
                       </p>
                     </div>
@@ -459,12 +459,12 @@ export default function ComparePage() {
 
                 {/* Retry button */}
                 {aiAnalysis && !aiLoading && (
-                  <div className="px-5 pb-5">
+                  <div className="px-6 pb-6 pt-2">
                     <button
                       onClick={runAICompare}
-                      className="w-full py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] text-[11px] font-medium text-white/30 hover:text-white/50 hover:bg-white/[0.04] transition-all cursor-pointer flex items-center justify-center gap-1.5 uppercase tracking-wider"
+                      className="w-full py-3 rounded-xl bg-[#00E5A0] text-[#060B18] text-[11px] font-bold hover:bg-[#4AEDC4] transition-all cursor-pointer flex items-center justify-center gap-2 uppercase tracking-widest shadow-[0_0_20px_rgba(0,229,160,0.15)]"
                     >
-                      <RiSparklingLine className="text-[#00E5A0]" />
+                      <RiSparklingLine className="text-sm" />
                       Re-analyze
                     </button>
                   </div>
