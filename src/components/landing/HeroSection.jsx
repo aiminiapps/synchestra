@@ -173,8 +173,8 @@ export default function HeroSection() {
           <div className="text-center mb-8">
             <p className="text-[11px] font-medium text-white/30 tracking-[0.2em] uppercase">Trusted by</p>
           </div>
-          <div className="absolute rounded-l-2xl left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#060B18] to-transparent z-10" />
-          <div className="absolute rounded-r-2xl right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#060B18] to-transparent z-10" />
+          <div className="absolute rounded-l-2xl left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#101420] to-transparent z-10" />
+          <div className="absolute rounded-r-2xl right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#101420] to-transparent z-10" />
           
           <div className="flex gap-12 sm:gap-20 animate-marquee whitespace-nowrap items-center w-max">
             {[...cryptoLogos, ...cryptoLogos].map((logo, i) => (
