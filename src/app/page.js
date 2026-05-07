@@ -14,7 +14,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <HowItWorksSection />
-      <FeaturesBentoSection />
+      <FeaturesBentoSection />  
       <MeetAgentsSection />
       <BottomCTASection />
     </AppShell>
