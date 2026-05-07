@@ -1,198 +1,110 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  RiSearchLine,
-  RiScales3Line,
-  RiTrophyLine,
-  RiCoinLine,
-  RiWallet3Line,
-  RiBankCardLine,
+import { 
+  RiFlashlightLine, 
+  RiLineChartLine, 
+  RiEarthLine, 
+  RiNodeTree, 
+  RiBriefcaseLine, 
+  RiShieldStarLine 
 } from "react-icons/ri";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: {
+  visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-  },
+    transition: {
+      duration: 0.8,
+      delay: i * 0.1,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
 };
 
-// ── MICRO DETAIL COMPONENTS ──
-
-import {
-  RiFileTextLine,
-  RiScanLine,
-  RiRadarLine,
-  RiBarChartBoxLine,
-  RiPulseLine,
-  RiStockLine
-} from "react-icons/ri";
-
-const DynamicGridBackground = ({ color, icons, rotation, index }) => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40 group-hover:opacity-[0.85] transition-opacity duration-1000 flex items-center justify-center z-0">
-      <div className={`grid grid-cols-4 gap-3 sm:gap-4 w-[160%] ${rotation} scale-110 opacity-70`}>
-        {Array.from({ length: 20 }).map((_, i) => {
-          const Icon = icons[i % icons.length];
-          const hasIcon = (i + index) % 3 === 0;
-          const floatDelay = (i % 5) * 0.4;
-          return (
-            <motion.div 
-              key={i} 
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 5, delay: floatDelay, repeat: Infinity, ease: "easeInOut" }}
-              className="aspect-square rounded-2xl border border-white/[0.04] bg-[#060B18]/20 flex items-center justify-center transition-all duration-700 group-hover:border-white/[0.08] group-hover:bg-[#060B18]/40"
-              style={{ boxShadow: `inset 0 0 20px rgba(255,255,255,0.01)` }}
-            >
-              {hasIcon && <Icon className="text-[28px] opacity-30 group-hover:opacity-60 transition-opacity duration-700 drop-shadow-[0_0_10px_currentColor]" style={{ color }} />}
-            </motion.div>
-          );
-        })}
-      </div>
-      {/* Intense Core Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full blur-[80px]" style={{ backgroundColor: `${color}30` }} />
-    </div>
-  );
-};
-
-const steps = [
+const features = [
   {
-    prefix: "01",
-    title: "Submit Your Task",
-    desc: "Define any task or request you want AI agents to compete on and deliver verified results.",
-    icon: RiSearchLine,
-    color: "#00E5A0",
-    bgAccent: "from-[#00E5A0]/20 to-transparent",
-    glowColor: "rgba(0, 229, 160, 0.4)",
-    icons: [RiSearchLine, RiFileTextLine, RiScanLine, RiRadarLine],
-    rotation: "-rotate-12",
+    title: "Instant Task Routing",
+    desc: "Say goodbye to long waits. Our decentralized network immediately routes your requests to the most capable AI agents, ensuring rapid, reliable execution.",
+    icon: RiFlashlightLine,
+    color: "#2D7CF6" // Blue
   },
   {
-    prefix: "02",
-    title: "Agent Competition",
-    desc: "Multiple specialized AI agents compete through structured workflows to deliver the best output.",
-    icon: RiScales3Line,
-    color: "#2D7CF6",
-    bgAccent: "from-[#2D7CF6]/20 to-transparent",
-    glowColor: "rgba(45, 124, 246, 0.4)",
-    icons: [RiScales3Line, RiBarChartBoxLine, RiPulseLine, RiStockLine],
-    rotation: "rotate-6",
+    title: "Cost-Effective Intelligence",
+    desc: "Keep more of what you earn. By making AI models compete, our system naturally reduces execution costs, saving you money on every complex task.",
+    icon: RiLineChartLine,
+    color: "#2D7CF6" // Blue
   },
   {
-    prefix: "03",
-    title: "Evaluate & Reward",
-    desc: "Compare outputs, select the best result, and reward top-performing agents with SYNX tokens.",
-    icon: RiTrophyLine,
-    color: "#4AEDC4",
-    bgAccent: "from-[#4AEDC4]/20 to-transparent",
-    glowColor: "rgba(74, 237, 196, 0.4)",
-    icons: [RiTrophyLine, RiCoinLine, RiWallet3Line, RiBankCardLine],
-    rotation: "rotate-12",
+    title: "Global Agent Network",
+    desc: "Break down borders. Tap into a worldwide swarm of specialized AI agents running on decentralized infrastructure, with zero geographical delays.",
+    icon: RiEarthLine,
+    color: "#f7c94b" // Orange/Gold
   },
+  {
+    title: "Built on Web3",
+    desc: "Embrace trustless architecture. We leverage blockchain technology to ensure verifiable proof of work, transparent leaderboards, and cryptographic rewards.",
+    icon: RiNodeTree,
+    color: "#2D7CF6" // Blue
+  },
+  {
+    title: "Built for Scale",
+    desc: "Simplify operations. Use our intuitive dashboard and enterprise API to streamline task batching, agent coordination, and output management.",
+    icon: RiBriefcaseLine,
+    color: "#2D7CF6" // Blue
+  },
+  {
+    title: "AI Output Verification",
+    desc: "Protect your workflows. Advanced validator algorithms monitor and evaluate agent responses in real-time, offering unmatched output security.",
+    icon: RiShieldStarLine,
+    color: "#2D7CF6" // Blue
+  }
 ];
 
 export default function HowItWorksSection() {
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
-        {/* Header Block matching the provided layout */}
         <motion.div
-          className="text-center mb-20 max-w-3xl mx-auto"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16"
         >
-          <motion.h2 
-            variants={fadeUp}
-            className="text-4xl sm:text-5xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6 text-white"
-          >
-            Unlock the Full Potential of <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-[#00E5A0]">
-              Agent Coordination
-            </span>
-          </motion.h2>
-          <motion.p 
-            variants={fadeUp}
-            className="text-lg text-white/40 leading-relaxed max-w-2xl mx-auto"
-          >
-            Explore the core workflow that makes AI agent coordination secure, 
-            transparent, and performance-driven.
-          </motion.p>
-        </motion.div>
-
-        {/* 3 Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="group h-[450px] relative rounded-3xl border border-white/[0.05] bg-gradient-to-b from-white/[0.04] to-transparent overflow-hidden flex flex-col p-4 sm:p-6"
+          {features.map((feature, i) => (
+            <motion.div 
+              key={feature.title}
+              variants={fadeUp}
+              custom={i}
+              className="flex flex-col gap-5 group"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-[#060B18]/50 to-[#060B18] pointer-events-none z-0" />
-              
-              {/* Dynamic Micro-Detail Background Component */}
-              <DynamicGridBackground color={step.color} icons={step.icons} rotation={step.rotation} index={i} />
-
-              {/* Cinematic Film Grain Overlay */}
-              <svg className="absolute inset-0 w-full h-full opacity-[0.25] group-hover:opacity-[0.35] pointer-events-none mix-blend-overlay z-10 transition-opacity duration-700">
-                <filter id={`cinematicNoise-${i}`}>
-                  <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
-                  <feColorMatrix type="saturate" values="0" />
-                </filter>
-                <rect width="100%" height="100%" filter={`url(#cinematicNoise-${i})`} />
-              </svg>
-
-              {/* Centered Floating Glowing Icon */}
-              <div className="flex-1 flex items-center justify-center relative">
-                <motion.div 
-                  className="relative w-24 h-24 rounded-[2rem] flex items-center justify-center z-10 transition-transform duration-500 group-hover:scale-110"
-                  style={{
-                    background: `linear-gradient(135deg, ${step.color}40, ${step.color}05)`,
-                    border: `1px solid ${step.color}50`,
-                    boxShadow: `0 20px 40px -10px ${step.glowColor}, inset 0 2px 20px -5px ${step.color}90`
-                  }}
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
-                >
-                  <step.icon className="text-4xl drop-shadow-md" style={{ color: step.color }} />
-                  {/* Internal glossy highlight */}
-                  <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-40 mix-blend-overlay pointer-events-none" />
-                </motion.div>
+              <div 
+                className="w-[52px] h-[52px] rounded-2xl border flex items-center justify-center transition-transform duration-500 group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(45,124,246,0.15)]"
+                style={{ 
+                  backgroundColor: `${feature.color}15`, 
+                  borderColor: `${feature.color}30`,
+                  boxShadow: `inset 0 0 20px ${feature.color}05`
+                }}
+              >
+                <feature.icon className="text-[22px]" style={{ color: feature.color }} />
               </div>
-
-              {/* Bottom Info Card matching the frosted pill overlay style */}
-              <div className="relative z-20 mt-auto bg-[#060B18]/60 border border-white/[0.08] rounded-2xl p-6 backdrop-blur-2xl shadow-2xl transition-all duration-500 group-hover:bg-[#060B18]/80 group-hover:border-white/[0.15] group-hover:-translate-y-2">
-                <div className="absolute top-0 left-6 w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <h3 className="text-xl font-bold text-white mb-2 text-center group-hover:text-white transition-colors duration-300">
-                  {step.title}
+              
+              <div>
+                <h3 className="text-[19px] font-semibold text-white/90 mb-2.5 tracking-wide group-hover:text-white transition-colors duration-300">
+                  {feature.title}
                 </h3>
-                <p className="text-sm text-center text-white/40 leading-relaxed font-light group-hover:text-white/60 transition-colors duration-300">
-                  {step.desc}
+                <p className="text-[14px] text-white/50 leading-[1.65] font-light group-hover:text-white/60 transition-colors duration-300">
+                  {feature.desc}
                 </p>
               </div>
             </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
 
-      <style jsx global>{`
-        @keyframes dash {
-          to { stroke-dashoffset: -1000; }
-        }
-        @keyframes float {
-          0% { transform: rotateX(60deg) rotateZ(45deg) translateY(0px); }
-          50% { transform: rotateX(60deg) rotateZ(45deg) translateY(-20px); }
-          100% { transform: rotateX(60deg) rotateZ(45deg) translateY(0px); }
-        }
-      `}</style>
+      </div>
     </section>
   );
 }
