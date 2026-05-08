@@ -49,16 +49,19 @@ export default function BottomCTASection() {
                    transition={{ delay: 0.3 }}
                    className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
                  >
-                    <Link href="/arena" className="group relative w-full sm:w-auto">
-                       <div className="absolute inset-0 bg-gradient-to-r from-[#00E5A0] to-[#2D7CF6] rounded-full blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
-                       <button className="relative w-full sm:w-auto px-10 py-4.5 rounded-full bg-[#13141f] border border-white/10 text-white font-medium text-[15px] hover:bg-[#1a1b2a] transition-all duration-300 flex items-center justify-center gap-3">
+                    <Link href="/arena" className="w-full sm:w-auto">
+                       <motion.button 
+                         whileHover={{ scale: 1.02 }}
+                         whileTap={{ scale: 0.98 }}
+                         className="w-full sm:w-auto px-10 py-4.5 rounded-xl font-semibold text-[15px] tracking-wide transition-all flex items-center justify-center gap-2 bg-[#00E5A0] text-[#060B18] hover:bg-[#4AEDC4] shadow-[0_0_20px_rgba(0,229,160,0.15)] group"
+                       >
                           Launch Analysis Engine
                           <RiArrowRightLine className="text-[17px] group-hover:translate-x-1 transition-transform" />
-                       </button>
+                       </motion.button>
                     </Link>
 
                     <Link href="https://aisynx.gitbook.io/aisynx-docs" target="_blank" className="w-full sm:w-auto">
-                       <button className="w-full sm:w-auto px-10 py-4.5 rounded-full bg-transparent border border-white/10 text-white/70 font-medium text-[15px] hover:text-white hover:bg-white/[0.05] transition-all duration-300">
+                       <button className="w-full sm:w-auto px-10 py-4.5 rounded-xl bg-transparent border border-white/10 text-white/70 font-medium text-[15px] hover:text-white hover:bg-white/[0.05] transition-all duration-300">
                           Read The Docs
                        </button>
                     </Link>

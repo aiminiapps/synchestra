@@ -64,16 +64,33 @@ export default function HeroSection() {
           <motion.p
             variants={fadeUp}
             custom={2}
-            className="text-sm sm:text-[17px] text-white/40 max-w-2xl mx-auto mb-16 leading-relaxed font-light text-balance"
+            className="text-sm sm:text-[17px] text-white/40 max-w-2xl mx-auto mb-10 leading-relaxed font-light text-balance"
           >
             Say goodbye to generic AI. Experience the future of task execution, 
             powered by verifiable agent intelligence, for instant and cost-effective solutions.
           </motion.p>
 
-          {/* Visual Cards Section */}
           <motion.div
             variants={fadeUp}
             custom={3}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          >
+            <Link href="/arena" className="w-full sm:w-auto">
+               <motion.button 
+                 whileHover={{ scale: 1.02 }}
+                 whileTap={{ scale: 0.98 }}
+                 className="w-full sm:w-auto px-10 py-4.5 rounded-xl font-semibold text-[15px] tracking-wide transition-all flex items-center justify-center gap-2 bg-[#00E5A0] text-[#060B18] hover:bg-[#4AEDC4] shadow-[0_0_20px_rgba(0,229,160,0.15)] group"
+               >
+                  Enter The Arena
+                  <RiArrowRightLine className="text-[17px] group-hover:translate-x-1 transition-transform" />
+               </motion.button>
+            </Link>
+          </motion.div>
+
+          {/* Visual Cards Section */}
+          <motion.div
+            variants={fadeUp}
+            custom={4}
             className="relative flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 mt-10 mb-28 perspective-1000"
           >
              {/* Background ambient glow */}
