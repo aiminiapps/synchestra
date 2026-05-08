@@ -2,156 +2,151 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { RiArrowRightLine, RiNodeTree } from "react-icons/ri";
-import Image from "next/image";
+import { RiArrowRightLine, RiBarChartBoxLine, RiShieldKeyholeLine, RiPulseLine, RiSafe2Line } from "react-icons/ri";
 
 export default function BottomCTASection() {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="relative rounded-[40px] bg-white/[0.02] border border-white/[0.05] overflow-hidden flex flex-col lg:flex-row items-center p-8 sm:p-12 lg:p-16 gap-12 lg:gap-8">
+    <section className="py-24 relative overflow-hidden bg-[#060B18]">
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Left Content (Text & Buttons) */}
-          <div className="w-full lg:w-5/12 flex flex-col items-start z-20">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-[1.15] tracking-tight">
-              Enter the <br />
-              <span className="text-[#00E5A0]">
-                Intelligence Arena
-              </span>
-            </h2>
-            <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-md">
-              Join the AI agent economy. Coordinate agents through structured workflows, compare verified outputs, and reward top performers with SYNX tokens.
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <Link href="/arena">
-                <button className="px-8 py-4 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:shadow-[0_0_40px_rgba(255,255,255,0.25)] hover:-translate-y-0.5 flex items-center gap-2 group">
-                  Launch Agent
-                  <RiArrowRightLine className="group-hover:translate-x-1 transition-transform" />
-                </button>
-              </Link>
-              <Link href="https://synchestra-ai.gitbook.io/synchestra-ai-docs" target="_blank">
-                <button className="px-8 py-4 rounded-full bg-white/[0.05] border border-white/[0.1] text-white font-medium text-sm hover:bg-white/[0.1] transition-colors">
-                  View Documentation
-                </button>
-              </Link>
-            </div>
-          </div>
+          {/* Main CTA Container */}
+          <div className="relative rounded-[48px] bg-gradient-to-b from-[#0A101D] to-[#060B18] border border-white/[0.06] overflow-hidden flex flex-col items-center text-center p-12 sm:p-20 shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
+              
+              {/* Massive Ambient Glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#2D7CF6]/10 blur-[120px] rounded-full pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-[#00E5A0]/10 blur-[80px] rounded-full pointer-events-none" />
 
-          {/* Right Animated Visual (Tilted Canvas Mockup) */}
-          <div className="w-full lg:w-7/12 relative h-[400px] lg:h-[400px] perspective-[1200px] flex items-center justify-center lg:justify-end">
-            
-            {/* The 3D Mockup Container */}
-            <motion.div 
-              className="absolute w-[700px] sm:w-[800px] h-[450px] sm:h-[450px] left-0 sm:left-10 lg:left-auto lg:-right-32 lg:-bottom-16 transform-style-3d z-10"
-              initial={{ rotateY: -15, rotateX: 10, rotateZ: -2 }}
-              animate={{ 
-                y: [-10, 10, -10],
-                rotateY: [-15, -12, -15],
-                rotateX: [10, 12, 10] 
-              }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {/* Dashboard Window Frame */}
-              <div className="w-full h-full bg-[#060B18]/90 backdrop-blur-3xl border border-white/[0.08] rounded-3xl shadow-[-20px_40px_80px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden flex flex-col">
-                
-                {/* Window Header */}
-                <div className="h-12 border-b border-white/[0.05] flex items-center px-6 gap-2 bg-white/[0.02] shrink-0">
-                  <div className="w-3 h-3 rounded-full bg-[#ef4444]/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
-                  <div className="w-3 h-3 rounded-full bg-[#2D7CF6]/80 shadow-[0_0_10px_rgba(247,201,75,0.5)]" />
-                  <div className="w-3 h-3 rounded-full bg-[#4AEDC4]/80 shadow-[0_0_10px_rgba(45,212,160,0.5)]" />
-                  <div className="ml-4 flex gap-3">
-                    <div className="w-24 h-2 bg-white/10 rounded-full" />
-                    <div className="w-16 h-2 bg-white/5 rounded-full" />
-                  </div>
-                </div>
+              {/* Cinematic Texture Grain */}
+              <svg className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none mix-blend-overlay z-0">
+                <filter id="ctaNoise">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+                  <feColorMatrix type="saturate" values="0" />
+                </filter>
+                <rect width="100%" height="100%" filter="url(#ctaNoise)" />
+              </svg>
 
-                {/* Canvas Workspace Body */}
-                <div className="relative flex-1 w-full bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.05)_1px,transparent_0)] bg-[size:24px_24px] overflow-hidden">
-                  
-                  {/* SVG Canvas Connections */}
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 450">
-                    {/* Core to Research */}
-                    <path d="M 400 225 C 400 120, 250 225, 250 120" fill="none" stroke="#00E5A0" strokeWidth="2" strokeDasharray="4 6" className="animate-[dash_15s_linear_infinite]" opacity="0.6" />
-                    
-                    {/* Core to Risk */}
-                    <path d="M 400 225 C 400 350, 600 225, 600 350" fill="none" stroke="#4AEDC4" strokeWidth="2" opacity="0.3" />
-                    
-                    {/* Core to Sentiment */}
-                    <path d="M 400 225 C 550 225, 650 120, 650 120" fill="none" stroke="#2D7CF6" strokeWidth="2" strokeDasharray="4 6" className="animate-[dash_10s_linear_infinite_reverse]" opacity="0.6" />
-                  </svg>
-
-                  {/* Nodes */}
-                  
-                  {/* Center Core Node */}
-                  <motion.div 
-                    className="absolute top-[225px] left-[400px] -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gradient-to-br from-[#1e1c2e] to-[#060B18] border  flex items-center justify-center z-20"
-                    animate={{ scale: [1, 1.05, 1], boxShadow: ["0 0 40px rgba(124,117,255,0.4)", "0 0 60px rgba(124,117,255,0.6)", "0 0 40px rgba(124,117,255,0.4)"] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Image src="/agent.png" alt="OKAI" width={100} height={100} />
-                  </motion.div>
-
-                  {/* Top Left Node: Research */}
-                  <motion.div 
-                    className="absolute top-[120px] left-[250px] -translate-x-1/2 -translate-y-1/2 w-48 bg-[#13141f]/90 backdrop-blur-md border border-white/[0.08] rounded-xl p-3 z-10 shadow-2xl"
-                    animate={{ y: [-5, 5, -5] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  >
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-2 h-2 rounded-full bg-[#00E5A0] shadow-[0_0_8px_#00E5A0]" />
-                      <span className="text-white/80 text-[10px] font-mono uppercase tracking-wider">Research Agent</span>
+              {/* Decorative Floating Asset Cards */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block z-10">
+                 
+                 {/* Top Left: Smart Contract Security */}
+                 <motion.div 
+                   className="absolute top-16 left-12 bg-white/[0.02] backdrop-blur-md border border-white/[0.06] rounded-2xl p-4 flex items-center gap-3 shadow-xl"
+                   animate={{ y: [0, -15, 0] }}
+                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                 >
+                    <div className="w-10 h-10 rounded-xl bg-[#00E5A0]/10 flex items-center justify-center border border-[#00E5A0]/20">
+                       <RiShieldKeyholeLine className="text-[#00E5A0] text-xl" />
                     </div>
-                    <div className="space-y-2">
-                      <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                        <div className="w-[85%] h-full bg-[#00E5A0] rounded-full" />
-                      </div>
-                      <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                        <div className="w-[60%] h-full bg-[#00E5A0]/50 rounded-full" />
-                      </div>
-                      <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                        <div className="w-[40%] h-full bg-[#00E5A0]/30 rounded-full" />
-                      </div>
+                    <div className="text-left">
+                       <p className="text-[9px] text-white/40 uppercase tracking-widest mb-0.5">Contract Scan</p>
+                       <p className="text-[12px] font-medium text-white/90">99.8% Secure</p>
                     </div>
-                  </motion.div>
+                 </motion.div>
 
-                  {/* Bottom Right Node: Risk */}
-                  <motion.div 
-                    className="absolute top-[350px] left-[600px] -translate-x-1/2 -translate-y-1/2 w-44 bg-[#13141f]/90 backdrop-blur-md border border-white/[0.08] rounded-xl p-3 z-10 shadow-2xl"
-                    animate={{ y: [5, -5, 5] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 rounded-full bg-[#4AEDC4] shadow-[0_0_8px_#4AEDC4]" />
-                      <span className="text-white/80 text-[10px] font-mono uppercase tracking-wider">Risk Agent</span>
+                 {/* Top Right: Market Velocity */}
+                 <motion.div 
+                   className="absolute top-24 right-16 bg-white/[0.02] backdrop-blur-md border border-white/[0.06] rounded-2xl p-4 flex items-center gap-3 shadow-xl"
+                   animate={{ y: [0, 15, 0] }}
+                   transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                 >
+                    <div className="w-10 h-10 rounded-xl bg-[#2D7CF6]/10 flex items-center justify-center border border-[#2D7CF6]/20">
+                       <RiBarChartBoxLine className="text-[#2D7CF6] text-xl" />
                     </div>
-                    <div className="bg-[#4AEDC4]/10 text-[#4AEDC4] px-2 py-1.5 rounded text-[9px] font-medium border border-[#4AEDC4]/20 flex items-center justify-between">
-                      <span>CONTRACT RISK</span>
-                      <span className="font-bold">LOW</span>
+                    <div className="text-left">
+                       <p className="text-[9px] text-white/40 uppercase tracking-widest mb-0.5">Market Sentiment</p>
+                       <p className="text-[12px] font-medium text-white/90">Bullish</p>
                     </div>
-                  </motion.div>
+                 </motion.div>
 
-                  {/* Top Right Node: Sentiment */}
-                  <motion.div 
-                    className="absolute top-[120px] left-[650px] -translate-x-1/2 -translate-y-1/2 w-32 bg-[#13141f]/90 backdrop-blur-md border border-white/[0.08] rounded-xl p-4 z-10 shadow-2xl flex flex-col items-center"
-                    animate={{ y: [-4, 4, -4] }}
-                    transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                  >
-                    <div className="w-12 h-12 rounded-full border-[3px] border-[#2D7CF6]/30 border-t-[#2D7CF6] border-r-[#2D7CF6] flex items-center justify-center mb-2 rotate-45">
-                      <span className="text-[#2D7CF6] text-xs font-bold -rotate-45">98%</span>
+                 {/* Bottom Left: Logic Nodes */}
+                 <motion.div 
+                   className="absolute bottom-20 left-20 bg-white/[0.02] backdrop-blur-md border border-white/[0.06] rounded-2xl p-4 flex items-center gap-3 shadow-xl"
+                   animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
+                   transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                 >
+                    <div className="w-10 h-10 rounded-xl bg-[#f7c94b]/10 flex items-center justify-center border border-[#f7c94b]/20">
+                       <RiPulseLine className="text-[#f7c94b] text-xl" />
                     </div>
-                    <span className="text-white/80 text-[9px] font-mono tracking-widest uppercase">Bullish</span>
-                  </motion.div>
+                    <div className="text-left">
+                       <p className="text-[9px] text-white/40 uppercase tracking-widest mb-0.5">Node Activity</p>
+                       <p className="text-[12px] font-medium text-white/90">3 Agents Active</p>
+                    </div>
+                 </motion.div>
 
-                </div>
+                 {/* Bottom Right: Vault */}
+                 <motion.div 
+                   className="absolute bottom-16 right-24 bg-white/[0.02] backdrop-blur-md border border-white/[0.06] rounded-2xl p-4 flex items-center gap-3 shadow-xl"
+                   animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
+                   transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                 >
+                    <div className="w-10 h-10 rounded-xl bg-[#4AEDC4]/10 flex items-center justify-center border border-[#4AEDC4]/20">
+                       <RiSafe2Line className="text-[#4AEDC4] text-xl" />
+                    </div>
+                    <div className="text-left">
+                       <p className="text-[9px] text-white/40 uppercase tracking-widest mb-0.5">Tokenomics</p>
+                       <p className="text-[12px] font-medium text-white/90">Verified</p>
+                    </div>
+                 </motion.div>
               </div>
-            </motion.div>
 
-            {/* Ambient Background Glow behind the mockup */}
-            <div className="absolute inset-0 bg-[#00E5A0]/10 blur-[100px] rounded-full pointer-events-none -z-10" />
-            
+              {/* Main Content Content */}
+              <div className="relative z-20 max-w-3xl mx-auto flex flex-col items-center">
+                 <motion.div 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] mb-10 shadow-[0_0_20px_rgba(255,255,255,0.02)]"
+                 >
+                    <span className="w-2 h-2 rounded-full bg-[#00E5A0] animate-pulse shadow-[0_0_8px_#00E5A0]" />
+                    <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/70">Synchestra Swarm Active</span>
+                 </motion.div>
+
+                 <motion.h2 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: 0.1 }}
+                   className="text-4xl sm:text-5xl md:text-[56px] font-medium text-white mb-8 tracking-tight leading-[1.1]"
+                 >
+                    Understand Your Web3 Assets <br className="hidden sm:block" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E5A0] to-[#2D7CF6]">In Unprecedented Detail.</span>
+                 </motion.h2>
+
+                 <motion.p 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: 0.2 }}
+                   className="text-white/40 text-[16px] sm:text-[18px] leading-relaxed mb-12 max-w-2xl font-light"
+                 >
+                    Deploy the Synchestra AI network to instantly audit smart contracts, evaluate market sentiment, and map tokenomics across any chain. Don't just hold—comprehend.
+                 </motion.p>
+
+                 <motion.div 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: 0.3 }}
+                   className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
+                 >
+                    <Link href="/arena" className="group relative w-full sm:w-auto">
+                       <div className="absolute inset-0 bg-gradient-to-r from-[#00E5A0] to-[#2D7CF6] rounded-full blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
+                       <button className="relative w-full sm:w-auto px-10 py-4.5 rounded-full bg-[#13141f] border border-white/10 text-white font-medium text-[15px] hover:bg-[#1a1b2a] transition-all duration-300 flex items-center justify-center gap-3">
+                          Launch Analysis Engine
+                          <RiArrowRightLine className="text-[17px] group-hover:translate-x-1 transition-transform" />
+                       </button>
+                    </Link>
+
+                    <Link href="https://synchestra-ai.gitbook.io/synchestra-ai-docs" target="_blank" className="w-full sm:w-auto">
+                       <button className="w-full sm:w-auto px-10 py-4.5 rounded-full bg-transparent border border-white/10 text-white/70 font-medium text-[15px] hover:text-white hover:bg-white/[0.05] transition-all duration-300">
+                          Read The Docs
+                       </button>
+                    </Link>
+                 </motion.div>
+              </div>
+
           </div>
-        </div>
-      </div>
+       </div>
     </section>
-  );
+  )
 }
