@@ -11,11 +11,6 @@ export default function BottomCTASection() {
           
           {/* Main CTA Container */}
           <div className="relative rounded-[48px] bg-gradient-to-b from-[#0A101D] to-[#060B18] border border-white/[0.06] overflow-hidden flex flex-col items-center text-center p-12 sm:p-20 shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
-              
-              {/* Massive Ambient Glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#2D7CF6]/10 blur-[120px] rounded-full pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-[#00E5A0]/10 blur-[80px] rounded-full pointer-events-none" />
-
               {/* Cinematic Texture Grain */}
               <svg className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none mix-blend-overlay z-0">
                 <filter id="ctaNoise">
