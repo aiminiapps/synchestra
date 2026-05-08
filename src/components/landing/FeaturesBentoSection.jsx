@@ -60,8 +60,16 @@ export default function FeaturesBentoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="lg:col-span-7 group rounded-3xl bg-white/[0.02] border border-white/[0.05] overflow-hidden relative flex flex-col cursor-default"
+            className="lg:col-span-7 group rounded-3xl bg-gradient-to-br from-[#0A101D] to-[#060B18] border border-white/[0.05] overflow-hidden relative flex flex-col cursor-default"
           >
+            {/* Cinematic Texture Grain */}
+            <svg className="absolute inset-0 w-full h-full opacity-[0.25] pointer-events-none mix-blend-overlay z-0">
+              <filter id="fbsNoise1">
+                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+                <feColorMatrix type="saturate" values="0" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#fbsNoise1)" />
+            </svg>
             <div className="p-8 pb-0">
               <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Investigate via Interactive Canvas</h3>
               <p className="text-white/40 text-base leading-relaxed max-w-md">
@@ -154,8 +162,16 @@ export default function FeaturesBentoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-5 group rounded-3xl bg-white/[0.02] border border-white/[0.05] overflow-hidden relative flex flex-col cursor-default"
+            className="lg:col-span-5 group rounded-3xl bg-gradient-to-br from-[#0A101D] to-[#060B18] border border-white/[0.05] overflow-hidden relative flex flex-col cursor-default"
           >
+            {/* Cinematic Texture Grain */}
+            <svg className="absolute inset-0 w-full h-full opacity-[0.25] pointer-events-none mix-blend-overlay z-0">
+              <filter id="fbsNoise2">
+                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+                <feColorMatrix type="saturate" values="0" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#fbsNoise2)" />
+            </svg>
             <div className="p-8 pb-0">
               <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Seamless BNB Chain Web3</h3>
               <p className="text-white/40 text-base leading-relaxed">
@@ -201,8 +217,16 @@ export default function FeaturesBentoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-5 group rounded-3xl bg-white/[0.02] border border-white/[0.05] overflow-hidden relative flex flex-col p-8 cursor-default min-h-[450px]"
+            className="lg:col-span-5 group rounded-3xl bg-gradient-to-br from-[#0A101D] to-[#060B18] border border-white/[0.05] overflow-hidden relative flex flex-col p-8 cursor-default min-h-[450px]"
           >
+            {/* Cinematic Texture Grain */}
+            <svg className="absolute inset-0 w-full h-full opacity-[0.25] pointer-events-none mix-blend-overlay z-0">
+              <filter id="fbsNoise3">
+                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+                <feColorMatrix type="saturate" values="0" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#fbsNoise3)" />
+            </svg>
             <div className="relative z-20">
               <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Earn SYNX Rewards Automatically</h3>
               <p className="text-white/40 text-base leading-relaxed">
@@ -270,8 +294,16 @@ export default function FeaturesBentoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="lg:col-span-7 group rounded-3xl bg-white/[0.02] border border-white/[0.05] overflow-hidden relative flex flex-col cursor-default pb-0"
+            className="lg:col-span-7 group rounded-3xl bg-gradient-to-br from-[#0A101D] to-[#060B18] border border-white/[0.05] overflow-hidden relative flex flex-col cursor-default pb-0"
           >
+            {/* Cinematic Texture Grain */}
+            <svg className="absolute inset-0 w-full h-full opacity-[0.25] pointer-events-none mix-blend-overlay z-0">
+              <filter id="fbsNoise4">
+                <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+                <feColorMatrix type="saturate" values="0" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#fbsNoise4)" />
+            </svg>
             <div className="p-8 pb-0 relative z-20">
               <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Real-Time Price & Sentiment Insights</h3>
               <p className="text-white/40 text-base leading-relaxed max-w-lg">
