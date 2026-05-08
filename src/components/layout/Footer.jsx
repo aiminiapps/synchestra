@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-4 lg:col-span-5 flex flex-col items-start">
             <Link href="/" className="flex items-center gap-2 mb-6 group">
-              <Image src="/logo.png" alt="Synchestra Logo" width={140} height={50} />
+              <Image src="/logo.png" alt="Synchestra Logo" width={150} height={50} />
               
             </Link>
             <p className="text-white/40 text-sm leading-relaxed max-w-sm mb-8">

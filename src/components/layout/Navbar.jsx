@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   RiSwordLine,
   RiTrophyLine,
-  RiRobot2Line,
   RiUser3Line,
   RiWallet3Line,
   RiArrowLeftRightLine,
@@ -41,12 +40,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -61,26 +58,25 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[100] pt-4 px-4 pointer-events-none">
-        <motion.div
-          className={cn(
-            "max-w-5xl mx-auto rounded-2xl flex flex-col pointer-events-auto transition-all duration-500",
-            isScrolled || mobileMenuOpen
-              ? "bg-[#060B18]/80 backdrop-blur-xl border border-white/[0.08] shadow-2xl shadow-black/50"
-              : "bg-transparent border border-transparent"
-          )}
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <div className="flex items-center justify-between h-14 px-4 sm:px-5">
+      <header className={cn(
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500",
+        isScrolled ? "pt-4" : "pt-6"
+      )}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
-             <Image src="/logo.png" alt="Synchestra Logo" width={140} height={50} />
+            <Link href="/" className="flex items-center gap-2.5 group relative z-20">
+              <Image src="/logo.png" alt="Synchestra Logo" width={150} height={46} className="transition-transform duration-300 group-hover:scale-105" />
             </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1.5 absolute left-1/2 -translate-x-1/2">
+            {/* Desktop Nav (The Pill Container) */}
+            <nav className={cn(
+              "hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 rounded-full border px-2 py-1.5 transition-all duration-500 z-20",
+              isScrolled 
+                ? "bg-[#060B18]/90 backdrop-blur-xl border-white/[0.08] shadow-[0_10px_40px_rgba(0,0,0,0.5)]" 
+                : "bg-white/[0.02] backdrop-blur-md border-white/[0.04]"
+            )}>
               {navLinks.map((link) => {
                 const isActive =
                   link.href === "/"
@@ -91,23 +87,22 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="relative group px-3 py-2 rounded-xl"
+                    className="relative group px-5 py-2 rounded-full"
                   >
                     <span
                       className={cn(
-                        "relative z-10 flex items-center gap-1.5 text-sm font-medium transition-colors duration-300",
+                        "relative z-10 text-[13px] font-medium tracking-wide transition-colors duration-300",
                         isActive
                           ? "text-white"
-                          : "text-white/50 group-hover:text-white"
+                          : "text-white/60 group-hover:text-white"
                       )}
                     >
-                      <link.icon className={cn("text-[15px]", isActive ? "text-[#00E5A0]" : "")} />
                       {link.label}
                     </span>
                     {isActive && (
                       <motion.div
-                        layoutId="nav-pill"
-                        className="absolute inset-0 bg-white/[0.06] border border-white/[0.08] rounded-xl -z-0"
+                        layoutId="nav-pill-active"
+                        className="absolute inset-0 bg-white/[0.08] rounded-full -z-0"
                         transition={{
                           type: "spring",
                           stiffness: 400,
@@ -121,36 +116,37 @@ export default function Navbar() {
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-3 z-20">
               {isConnected && (
                 <Link
                   href="/profile"
-                  className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] transition-all"
+                  className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.08] text-white/60 hover:text-white hover:bg-white/[0.08] transition-all"
                 >
-                  <RiUser3Line />
-                  Profile
+                  <RiUser3Line className="text-lg" />
                 </Link>
               )}
               
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => open()}
                 className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer",
+                  "flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-[13px] tracking-wide transition-all duration-300 cursor-pointer shadow-lg",
                   isConnected
                     ? "bg-[#00E5A0]/10 border border-[#00E5A0]/20 text-[#00E5A0] hover:bg-[#00E5A0]/15"
-                    : "bg-gradient-to-r from-[#00E5A0] to-[#00B87A] text-white hover:opacity-90 shadow-lg shadow-[#00E5A0]/20"
+                    : "bg-[#00E5A0] text-[#060B18] hover:bg-[#4AEDC4] shadow-[0_0_20px_rgba(0,229,160,0.15)]"
                 )}
               >
-                <RiWallet3Line className="text-base" />
-                <span className="font-mono text-xs sm:text-sm">
-                  {isConnected ? truncatedAddress : "Connect"}
+                {!isConnected && <RiWallet3Line className="text-[15px]" />}
+                <span className="font-mono">
+                  {isConnected ? truncatedAddress : "Launch App"}
                 </span>
-              </button>
+              </motion.button>
 
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                className="md:hidden w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-white/70 hover:text-white hover:bg-white/[0.08] transition-colors"
               >
                 {mobileMenuOpen ? (
                   <RiCloseLine className="text-xl" />
@@ -160,57 +156,54 @@ export default function Navbar() {
               </button>
             </div>
           </div>
+        </div>
 
-          {/* Mobile Fullscreen Menu Overlay */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="md:hidden overflow-hidden border-t border-white/[0.06] bg-[#060B18]/95 backdrop-blur-2xl rounded-b-2xl"
-              >
-                <div className="flex flex-col p-4 gap-2">
-                  {[...navLinks, { href: "/profile", label: "Profile", icon: RiUser3Line }].map((link, i) => {
-                    // Only show profile if connected, or always show it but it prompts connect? We can secure it or hide it.
-                    if (link.href === "/profile" && !isConnected) return null;
-                    
-                    const isActive =
-                      link.href === "/"
-                        ? pathname === "/"
-                        : pathname === link.href ||
-                          pathname?.startsWith(link.href + "/");
+        {/* Mobile Fullscreen Menu Overlay */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden absolute top-full left-4 right-4 mt-2 overflow-hidden border border-white/[0.08] bg-[#060B18]/95 backdrop-blur-2xl rounded-3xl shadow-2xl"
+            >
+              <div className="flex flex-col p-4 gap-2">
+                {[...navLinks, { href: "/profile", label: "Profile", icon: RiUser3Line }].map((link, i) => {
+                  if (link.href === "/profile" && !isConnected) return null;
+                  
+                  const isActive =
+                    link.href === "/"
+                      ? pathname === "/"
+                      : pathname === link.href ||
+                        pathname?.startsWith(link.href + "/");
 
-                    return (
-                      <motion.div
-                        key={link.href}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.05 }}
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "flex items-center gap-3 p-4 rounded-2xl text-[15px] font-medium transition-colors",
+                          isActive
+                            ? "bg-[#00E5A0]/10 text-[#00E5A0]"
+                            : "text-white/60 hover:text-white hover:bg-white/[0.04]"
+                        )}
                       >
-                        <Link
-                          href={link.href}
-                          className={cn(
-                            "flex items-center gap-3 p-4 rounded-xl text-lg font-medium transition-colors",
-                            isActive
-                              ? "bg-white/[0.06] text-white border border-white/[0.05]"
-                              : "text-white/60 hover:text-white hover:bg-white/[0.04]"
-                          )}
-                        >
-                          <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center", isActive ? "bg-[#00E5A0]/20 text-[#00E5A0]" : "bg-white/[0.04]")}>
-                             <link.icon className="text-xl" />
-                          </div>
-                          {link.label}
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+                        <link.icon className="text-lg" />
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
       
       {/* Mobile menu backdrop */}
@@ -221,7 +214,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="md:hidden fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm"
+            className="md:hidden fixed inset-0 z-[90] bg-[#060B18]/80 backdrop-blur-sm"
           />
         )}
       </AnimatePresence>
