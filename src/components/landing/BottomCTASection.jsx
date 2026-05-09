@@ -10,7 +10,7 @@ export default function BottomCTASection() {
        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Main CTA Container */}
-          <div className="relative rounded-[48px] bg-gradient-to-b from-[#0A101D] to-[#060B18] border border-white/[0.06] overflow-hidden flex flex-col items-center text-center p-12 sm:p-20 shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
+          <div className="relative rounded-[48px] bg-gradient-to-b from-[#0A101D] to-[#060B18] border border-white/[0.06] overflow-hidden flex flex-col items-center text-center p-12 sm:p-20 ">
               {/* Cinematic Texture Grain */}
               <svg className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none mix-blend-overlay z-0">
                 <filter id="ctaNoise">
