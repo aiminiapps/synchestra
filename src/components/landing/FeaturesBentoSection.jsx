@@ -47,7 +47,7 @@ export default function FeaturesBentoSection() {
             className="text-lg text-white/40 leading-relaxed max-w-2xl mx-auto"
           >
             Whether you're comparing agent outputs or managing rewards, our platform equips 
-            you with everything needed to coordinate AI work — fast, secure, and intuitive.
+            you with everything needed to coordinate AI work fast, secure, and intuitive.
           </motion.p>
         </motion.div>
 
@@ -305,86 +305,125 @@ export default function FeaturesBentoSection() {
               <rect width="100%" height="100%" filter="url(#fbsNoise4)" />
             </svg>
             <div className="p-8 pb-0 relative z-20">
-              <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Real-Time Price & Sentiment Insights</h3>
+              <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">Arena Flow Workspace</h3>
               <p className="text-white/40 text-base leading-relaxed max-w-lg">
-                Track live price movements blended with sentient agent reasoning. Make hyper-informed moves by visualizing both the charts and the "whys" behind them.
+                Map out multi-agent reasoning using our interactive infinite canvas. Visually trace data sources, connect logic, and build powerful AI consensus graphs effortlessly.
               </p>
             </div>
             
-            {/* Card 4: Desktop OS Skeleton with Live Notifications */}
+            {/* Card 4: Desktop OS Skeleton with Canvas Visuals */}
             <div className="relative mt-8 min-h-[300px] w-full flex items-end justify-center px-4 sm:px-8 overflow-hidden">
               {/* Desktop Window Frame */}
               <div className="w-full h-[280px] relative bg-[#060B18]/60 backdrop-blur-2xl border-t border-x border-white/[0.08] rounded-t-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.5)] overflow-hidden">
                  
                  {/* Mac-style Window Header */}
-                 <div className="h-10 w-full border-b border-white/[0.05] bg-white/[0.02] flex items-center px-4 relative">
+                 <div className="h-10 w-full border-b border-white/[0.05] bg-white/[0.02] flex items-center px-4 relative z-20">
                    <div className="flex gap-2 z-10">
                      <div className="w-2.5 h-2.5 rounded-full bg-[#ef4444]/80 shadow-[0_0_5px_#ef444450]" />
-                     <div className="w-2.5 h-2.5 rounded-full bg-[#2D7CF6]/80 shadow-[0_0_5px_#2D7CF650]" />
-                     <div className="w-2.5 h-2.5 rounded-full bg-[#4AEDC4]/80 shadow-[0_0_5px_#4AEDC450]" />
-                   </div>
-                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                     <span className="text-white/30 text-[10px] font-mono uppercase tracking-[0.2em]">Synchestra_OS</span>
+                     <div className="w-2.5 h-2.5 rounded-full bg-[#f7c94b]/80 shadow-[0_0_5px_#f7c94b50]" />
+                     <div className="w-2.5 h-2.5 rounded-full bg-[#00E5A0]/80 shadow-[0_0_5px_#00E5A050]" />
                    </div>
                  </div>
 
-                 {/* Window Body (Desktop Grid) */}
-                 <div className="absolute inset-0 top-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px]" />
+                 {/* Window Body (Canvas Grid) */}
+                 <div className="absolute inset-0 top-10 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.06)_1px,transparent_0)] bg-[size:24px_24px] pointer-events-none" />
 
-                 {/* Floating Element 1: Live Price Widget */}
-                 <motion.div 
-                   animate={{ y: [10, -5, 0], opacity: [0, 1] }}
-                   transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="absolute top-16 left-6 sm:left-10 w-48 bg-gradient-to-br from-[#0c1a2e]/90 to-[#060B18]/90 backdrop-blur-xl border border-[#00E5A0]/30 rounded-2xl p-4 shadow-[0_15px_30px_rgba(0,229,160,0.15)] group-hover:scale-[1.02] transition-transform duration-500"
-                 >
-                    <div className="flex justify-between items-center mb-3">
-                      <div className="flex items-center gap-1.5">
-                        <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=025" alt="BTC" className="w-4 h-4" />
-                        <span className="text-white/60 text-[10px] font-mono">BTC/USD</span>
-                      </div>
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#4AEDC4] shadow-[0_0_8px_#4AEDC4] animate-pulse" />
-                    </div>
-                    <div className="text-2xl text-white font-bold tracking-tight">$94,201.00</div>
-                    <div className="text-[#4AEDC4] text-xs font-medium mt-1">+2.4% (1H)</div>
-                    
-                    {/* Mini SVG Sparkline */}
-                    <svg className="w-full h-8 mt-3 overflow-visible" viewBox="0 0 100 30" preserveAspectRatio="none">
-                       <path d="M 0 25 Q 15 25 25 15 T 50 10 T 75 20 T 100 5" fill="none" stroke="#4AEDC4" strokeWidth="2.5" className="drop-shadow-[0_2px_4px_rgba(74,237,196,0.4)]" />
-                    </svg>
-                 </motion.div>
+                 {/* Flow Canvas Elements */}
+                 <div className="absolute inset-0 top-10 pointer-events-none overflow-hidden hidden sm:block">
+                   
+                   {/* SVG Bezier Curves */}
+                   <svg className="absolute inset-0 w-full h-full" viewBox="0 0 700 240" preserveAspectRatio="xMidYMid slice">
+                     {/* Input -> Agent 1 */}
+                     <path d="M 140 120 C 200 120, 220 60, 280 60" fill="none" stroke="#00E5A0" strokeWidth="2" opacity="0.4" className="animate-[dash_8s_linear_infinite]" strokeDasharray="4 6" />
+                     {/* Input -> Agent 2 */}
+                     <path d="M 140 120 C 200 120, 220 180, 280 180" fill="none" stroke="#2D7CF6" strokeWidth="2" opacity="0.4" className="animate-[dash_8s_linear_infinite_reverse]" strokeDasharray="4 6" />
+                     {/* Agent 1 -> Consensus */}
+                     <path d="M 440 60 C 500 60, 520 120, 560 120" fill="none" stroke="#00E5A0" strokeWidth="2" opacity="0.4" className="animate-[dash_8s_linear_infinite]" strokeDasharray="4 6" />
+                     {/* Agent 2 -> Consensus */}
+                     <path d="M 440 180 C 500 180, 520 120, 560 120" fill="none" stroke="#2D7CF6" strokeWidth="2" opacity="0.4" className="animate-[dash_8s_linear_infinite_reverse]" strokeDasharray="4 6" />
+                   </svg>
 
-                 {/* Floating Element 2: Volume Notification */}
-                 <motion.div 
-                   animate={{ x: [20, -5, 0], opacity: [0, 1] }}
-                   transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                   className="absolute top-24 right-4 sm:right-8 w-56 sm:w-64 bg-[#060B18]/90 backdrop-blur-2xl border border-white/[0.08] rounded-2xl p-3 shadow-2xl flex items-start gap-3 group-hover:-translate-y-1 transition-transform duration-500"
-                 >
-                    <div className="w-8 h-8 rounded-full bg-[#00E5A0]/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <RiFundsLine className="text-[#00E5A0]" />
-                   </div>
-                   <div>
-                     <div className="text-white text-xs font-semibold">Volume Breakout</div>
-                     <div className="text-white/50 text-[10px] leading-relaxed mt-0.5">Ethereum 24h volume spiked 42%. Rally confirmation pending.</div>
-                   </div>
-                 </motion.div>
+                   {/* Node 1: User Request */}
+                   <motion.div 
+                     animate={{ y: [0, -3, 0] }}
+                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                     className="absolute left-[10px] top-[95px] w-[130px] bg-[#0c1a2e]/90 backdrop-blur-xl border border-white/10 rounded-xl p-3 shadow-xl"
+                   >
+                     <div className="flex items-center gap-2 mb-1.5">
+                       <span className="text-white/50 text-[9px] font-mono uppercase tracking-wider">Input Prompt</span>
+                     </div>
+                     <div className="text-white/90 text-[10px] leading-snug">"Analyze SYNX Token Potential"</div>
+                     {/* Output Port */}
+                     <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#0c1a2e] border-2 border-white/40 rounded-full" />
+                   </motion.div>
 
-                 {/* Floating Element 3: Agent Consensus Notification */}
-                 <motion.div 
-                   animate={{ y: [20, -5, 0], opacity: [0, 1] }}
-                   transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
-                    className="absolute bottom-8 right-6 sm:right-16 w-60 sm:w-72 bg-gradient-to-r from-[#0c1a2e]/90 to-[#060B18]/90 backdrop-blur-2xl border border-[#00E5A0]/40 rounded-2xl p-3 shadow-[0_10px_40px_rgba(0,229,160,0.15)] flex items-center gap-3 group-hover:-translate-y-2 transition-transform duration-500"
-                 >
-                    <div className="w-8 h-8 rounded-full bg-[#00E5A0]/20 flex items-center justify-center shrink-0">
-                      <RiVipCrownLine className="text-[#00E5A0]" />
-                   </div>
-                   <div>
-                      <div className="text-[#00E5A0] text-[11px] font-bold uppercase tracking-wide">Consensus Reached</div>
-                     <div className="text-white/80 text-[10px] mt-0.5">All 3 agents align on <span className="font-bold text-white">STRONG BUY</span>.</div>
-                   </div>
-                 </motion.div>
+                   {/* Node 2: Market Agent */}
+                   <motion.div 
+                     animate={{ y: [0, -4, 0] }}
+                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                     className="absolute left-[230px] top-[30px] w-[160px] bg-[#0c1a2e]/90 backdrop-blur-xl border border-[#00E5A0]/30 rounded-xl p-3 shadow-[0_10px_30px_rgba(0,229,160,0.1)]"
+                   >
+                     <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#0c1a2e] border-2 border-[#00E5A0] rounded-full" />
+                     <div className="flex items-center justify-between mb-2">
+                       <div className="flex items-center gap-1.5">
+                         <div className="w-4 h-4 rounded bg-[#00E5A0]/20 flex items-center justify-center">
+                           <RiSearchLine className="text-[#00E5A0] text-[10px]" />
+                         </div>
+                         <span className="text-[#00E5A0] text-[9px] font-mono uppercase tracking-wider">Market Intel</span>
+                       </div>
+                       <div className="w-1.5 h-1.5 rounded-full bg-[#00E5A0] animate-pulse" />
+                     </div>
+                     <div className="text-white/70 text-[9px] leading-tight line-clamp-2">Volume breaking out. Bullish divergence confirmed on 4H.</div>
+                     <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#0c1a2e] border-2 border-[#00E5A0] rounded-full" />
+                   </motion.div>
+
+                   {/* Node 3: Risk Agent */}
+                   <motion.div 
+                     animate={{ y: [0, -5, 0] }}
+                     transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                     className="absolute left-[230px] top-[150px] w-[160px] bg-[#0c1a2e]/90 backdrop-blur-xl border border-[#2D7CF6]/30 rounded-xl p-3 shadow-[0_10px_30px_rgba(45,124,246,0.1)]"
+                   >
+                     <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#0c1a2e] border-2 border-[#2D7CF6] rounded-full" />
+                     <div className="flex items-center justify-between mb-2">
+                       <div className="flex items-center gap-1.5">
+                         <div className="w-4 h-4 rounded bg-[#2D7CF6]/20 flex items-center justify-center">
+                           <RiNodeTree className="text-[#2D7CF6] text-[10px]" />
+                         </div>
+                         <span className="text-[#2D7CF6] text-[9px] font-mono uppercase tracking-wider">Contract Risk</span>
+                       </div>
+                       <div className="w-1.5 h-1.5 rounded-full bg-[#2D7CF6] animate-pulse" />
+                     </div>
+                     <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden mb-1">
+                       <div className="bg-[#2D7CF6] h-full w-[85%]" />
+                     </div>
+                     <div className="text-white/40 text-[8px]">Security Score: 85/100</div>
+                     <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#0c1a2e] border-2 border-[#2D7CF6] rounded-full" />
+                   </motion.div>
+
+                   {/* Node 4: Consensus Output */}
+                   <motion.div 
+                     animate={{ y: [0, -3, 0], scale: [1, 1.02, 1] }}
+                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                     className="absolute left-[460px] top-[95px] w-[120px] bg-gradient-to-br from-[#10192e]/90 to-[#060B18]/90 backdrop-blur-xl border border-[#f7c94b]/40 rounded-xl p-3 shadow-[0_15px_40px_rgba(247,201,75,0.15)]"
+                   >
+                     <div className="flex items-center gap-1.5 mb-1.5">
+                       <div className="w-4 h-4 rounded-full bg-[#f7c94b]/20 flex items-center justify-center border border-[#f7c94b]/30">
+                         <RiVipCrownLine className="text-[#f7c94b] text-[10px]" />
+                       </div>
+                       <span className="text-[#f7c94b] text-[9px] font-mono uppercase tracking-wider">Consensus</span>
+                     </div>
+                     <div className="text-white text-[13px] font-bold tracking-tight">STRONG BUY</div>
+                   </motion.div>
+                 </div>
+
+                 {/* Mobile fallback text so it doesn't break */}
+                 <div className="absolute inset-0 sm:hidden flex flex-col items-center justify-center text-center p-6 pointer-events-none">
+                    <RiNodeTree className="text-4xl text-[#00E5A0] mb-3 opacity-50" />
+                    <p className="text-white/40 text-xs">Canvas visualization optimized for desktop displays.</p>
+                 </div>
 
                  {/* Base Fade for depth */}
-                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#060B18] to-transparent pointer-events-none" />
+                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#060B18] to-transparent pointer-events-none z-10" />
               </div>
             </div>
           </motion.div>
