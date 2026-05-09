@@ -16,7 +16,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://www.synchestra.ai"),
+  metadataBase: new URL("https://www.aisynx.xyz"),
   title: {
     default: "Synchestra AI — AI Agent Coordination Platform",
     template: "%s | Synchestra AI",
@@ -89,7 +89,7 @@ export default function RootLayout({ children }) {
               url: "https://www.synchestra.ai",
               logo: "https://www.synchestra.ai/agent.png",
               sameAs: [
-                "https://synchestra-ai.gitbook.io/synchestra-ai-docs",
+                "https://aisynx.gitbook.io/aisynx-docs",
               ],
             }),
           }}
