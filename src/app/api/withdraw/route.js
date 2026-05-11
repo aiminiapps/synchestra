@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 const ADMIN_PRIVATE_KEY = process.env.ADMIN_PRIVATE_KEY
-const TOKEN_CONTRACT_ADDRESS = '0xaA1aD1B852c0b59B4608A8B3e16B73518CDDB813' // OKAI on BSC
+const TOKEN_CONTRACT_ADDRESS = '0x3225dDffC7682748e189af68F9f2594f1B4FF3D8' // OKAI on BSC
 const BSC_RPC_URL = 'https://bsc-dataseed1.binance.org'
-const TOKEN_SYMBOL = 'OKAIP'
+const TOKEN_SYMBOL = 'SYNXR'
 const TOKEN_DECIMALS = 18
 const TRANSFER_FUNCTION_SIGNATURE = '0xa9059cbb'
 
@@ -34,7 +34,7 @@ function createTransferData(recipientAddress, tokenAmountWei) {
 // ── POST — Execute OKAI Withdrawal ─────────────────────────────────────────────
 export async function POST(request) {
   const startTime = Date.now()
-  console.log('\n[OKAIP Withdrawal] Request at:', new Date().toISOString())
+  console.log('\n[SYNXR Withdrawal] Request at:', new Date().toISOString())
 
   try {
     if (!ADMIN_PRIVATE_KEY) {
@@ -54,11 +54,11 @@ export async function POST(request) {
 
     const withdrawAmount = parseFloat(amount)
     if (isNaN(withdrawAmount) || withdrawAmount < 10) {
-      return NextResponse.json({ error: 'Minimum withdrawal is 10 OKAIP' }, { status: 400 })
+      return NextResponse.json({ error: 'Minimum withdrawal is 10 SYNXR' }, { status: 400 })
     }
     if (withdrawAmount > 10000) {
       return NextResponse.json(
-        { error: 'Maximum withdrawal is 10,000 OKAIP per transaction' },
+        { error: 'Maximum withdrawal is 10,000 SYNXR per transaction' },
         { status: 400 }
       )
     }
@@ -107,13 +107,13 @@ export async function POST(request) {
     if (availableBalance < withdrawAmount) {
       return NextResponse.json(
         {
-          error: `Insufficient balance. Available: ${availableBalance} OKAIP, requested: ${withdrawAmount} OKAIP`,
+          error: `Insufficient balance. Available: ${availableBalance} SYNXR, requested: ${withdrawAmount} SYNXR`,
         },
         { status: 400 }
       )
     }
 
-    console.log(`[OKAIP Withdrawal] Sending ${withdrawAmount} OKAIP to ${address}`)
+    console.log(`[SYNXR Withdrawal] Sending ${withdrawAmount} SYNXR to ${address}`)
 
     // ── Build & send on-chain transaction ───────────────────────────────
     await directRPCCall('eth_blockNumber') // verify RPC connectivity
@@ -139,7 +139,7 @@ export async function POST(request) {
 
     const signedTx = await adminWallet.signTransaction(rawTx)
     const txHash = await directRPCCall('eth_sendRawTransaction', [signedTx])
-    console.log('[OKAIP Withdrawal] TX sent:', txHash)
+    console.log('[SYNXR Withdrawal] TX sent:', txHash)
 
     // ── Deduct balance from Prisma immediately ─────────────────────────
     await prisma.userReward.update({
@@ -226,7 +226,7 @@ export async function POST(request) {
     })
 
     console.log(
-      `[OKAIP Withdrawal] SUCCESS: ${withdrawAmount} OKAIP to ${address} (${processingTime}ms)`
+      `[SYNXR Withdrawal] SUCCESS: ${withdrawAmount} SYNXR to ${address} (${processingTime}ms)`
     )
 
     return NextResponse.json({
@@ -242,7 +242,7 @@ export async function POST(request) {
       timestamp: new Date().toISOString(),
     })
   } catch (error) {
-    console.error('[OKAIP Withdrawal] Error:', error)
+    console.error('[SYNXR Withdrawal] Error:', error)
     return NextResponse.json(
       { error: 'Transaction failed: ' + error.message },
       { status: 500 }
